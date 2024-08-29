@@ -1,9 +1,13 @@
 import React from 'react';
+import './css/CadProdutos.css';
+import { FormProduto} from '../components/FormProduto';
+import { VerProduto } from '../components/VerProduto';
 
-export function CadProdutos() {
+export const CadProdutos = () => {
     return (
-        <div>
-            <h1>Cadastro de produtos</h1>
+        <div className="container">
+            <FormProduto />
+            <VerProduto />
         </div>
     );
 }

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PagInicial } from '../pages/PagInicial';
 import { Login } from '../pages/Login';
 import { CadProdutos } from '../pages/CadProdutos';
+import { VerProduto } from '../components/VerProduto';
 
 export const RouteAsRouter = () => {
     return (

@@ -1,0 +1,47 @@
+/* RecentContacts.css */
+.sidebar {
+    width: 35%;
+    padding: 20px;
+    background-color: #91766d; /* Marrom acinzentado */
+    border-radius: 5px;
+    color: #ffffff; /* Texto branco */
+}
+
+.sidebar h3 {
+    background-color: #000000; /* Fundo preto */
+    color: #ffffff; /* Texto branco */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.sidebar p {
+    color: #ffffff; /* Texto branco */
+}
+
+.recent-contacts {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #000000; /* Texto preto */
+}
+
+.recent-contacts table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-contacts th {
+    background-color: #91766d; /* Marrom acinzentado */
+    color: #ffffff; /* Texto branco */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda cinza claro */
+}
+
+.recent-contacts td {
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda cinza claro */
+    text-align: left;
+}

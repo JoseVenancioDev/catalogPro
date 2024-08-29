@@ -1,0 +1,42 @@
+/* FormProduto.css */
+.form-section {
+    width: 60%;
+    background-color: #ffffff; /* Fundo branco */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #000000; /* Texto preto */
+}
+
+.form-section h2 {
+    background-color: #91766d; /* Marrom acinzentado */
+    color: #ffffff; /* Texto branco */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Borda cinza claro */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #F6ECE3; /* Fundo bege claro */
+    color: #000000; /* Texto preto */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #91766d; /* Marrom acinzentado */
+    color: #ffffff; /* Texto branco */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #715a53; /* Um tom mais escuro de marrom acinzentado para o hover */
+}
