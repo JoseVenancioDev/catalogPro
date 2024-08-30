@@ -1,7 +1,7 @@
 /* RecentContacts.css */
 .sidebar {
-    width: 35%;
-    padding: 20px;
+    width: 100%;
+    padding: 1rem; /* Diminuído o padding para melhorar em telas menores */
     background-color: #91766d; /* Marrom acinzentado */
     border-radius: 5px;
     color: #ffffff; /* Texto branco */
@@ -9,6 +9,7 @@
 
 .sidebar h3 {
     background-color: #000000; /* Fundo preto */
+    text-align: center;
     color: #ffffff; /* Texto branco */
     padding: 10px;
     border-radius: 5px;
@@ -16,7 +17,7 @@
 }
 
 .sidebar p {
-    color: #ffffff; /* Texto branco */
+    color: #000000; /* Texto branco */
 }
 
 .recent-contacts {
@@ -44,4 +45,39 @@
     padding: 10px;
     border: 1px solid #ccc; /* Borda cinza claro */
     text-align: left;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        padding: 0.5rem; /* Ajuste de padding em telas menores */
+    }
+
+    .sidebar h3 {
+        font-size: 1.2rem; /* Tamanho do texto reduzido para melhor encaixe */
+        padding: 8px;
+    }
+
+    .recent-contacts {
+        padding: 8px;
+    }
+
+    .recent-contacts th, .recent-contacts td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 0.25rem; /* Padding ainda menor para telas muito pequenas */
+    }
+
+    .sidebar h3 {
+        font-size: 1rem; /* Tamanho do texto ainda menor */
+        padding: 6px;
+    }
+
+    .recent-contacts th, .recent-contacts td {
+        padding: 5px; /* Redução do padding nas células da tabela */
+    }
 }

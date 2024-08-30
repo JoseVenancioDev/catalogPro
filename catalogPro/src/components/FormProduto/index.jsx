@@ -2,6 +2,7 @@ import React from 'react';
 import './FormProduto.css';
 
 export const FormProduto = () => {
+
     return (
         <div className="form-section">
             <h2>Cadastrar Produto</h2>
@@ -11,7 +12,7 @@ export const FormProduto = () => {
                 <input type="text" name="distribuidora" placeholder="Distribuidora" required /><br />
                 <input type="text" name="validade" placeholder="Validade" required /><br />
                 <input type="text" name="descricao" placeholder="Descrição" required /><br />
-                <button type="submit">Adicionar Produto</button>
+                <button type="submit" >Adicionar Produto</button>
             </form>
         </div>
     );
