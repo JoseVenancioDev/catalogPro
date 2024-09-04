@@ -3,9 +3,9 @@ import './VerProduto.css';
 
 export const VerProduto = () => {
     return (
-        <div className="sidebar">
+        <div className='produtos-recentes'>
             <h3>Produtos Recentes</h3>
-            <div className="recent-contacts">
+            <div className="lista-recentes">
                 <p>Não há produtos!</p>
                 {/* Tabela de produtos pode ser adicionada aqui */}
             </div>

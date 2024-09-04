@@ -17,10 +17,10 @@
 }
 
 .sidebar p {
-    color: #000000; /* Texto branco */
+    color: #ffffff; /* Texto branco */
 }
 
-.recent-contacts {
+.lista-recentes {
     background-color: #ffffff; /* Fundo branco */
     padding: 10px;
     border-radius: 5px;
@@ -29,22 +29,30 @@
     color: #000000; /* Texto preto */
 }
 
-.recent-contacts table {
+.lista-recentes table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.recent-contacts th {
+.lista-recentes th {
     background-color: #91766d; /* Marrom acinzentado */
     color: #ffffff; /* Texto branco */
     padding: 10px;
     border: 1px solid #ccc; /* Borda cinza claro */
 }
 
-.recent-contacts td {
+.lista-recentes td {
     padding: 10px;
     border: 1px solid #ccc; /* Borda cinza claro */
     text-align: left;
+}
+.produtos-recentes{
+    font-size: larger;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 20px;
+    color:#ffffff;
+    background-color: #91766d;
 }
 
 /* Responsividade */
