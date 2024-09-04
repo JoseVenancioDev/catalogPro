@@ -9,7 +9,8 @@ export const RouteAsRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<PagInicial />} />
-                <Route path="/bemvindo" element={<Login />} />
+                <Route path="/bemvindo" element={<Cadastro />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/produtos" element={<CadProdutos />} />
             </Routes>
         </BrowserRouter>
