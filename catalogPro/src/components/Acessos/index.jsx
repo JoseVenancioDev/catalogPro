@@ -3,6 +3,16 @@ import { FiHome, FiBarChart2 } from 'react-icons/fi';
 import './Acessos.css'; // Certifique-se de criar este arquivo CSS
 
 export const Acessos = () => {
+    // Função para lidar com o clique no link "Principal"
+    const handleHomeClick = (e) => {
+        e.preventDefault(); // Evita que o link seja seguido imediatamente
+        const userConfirmed = window.confirm('Você deseja sair?');
+        if (userConfirmed) {
+            // Lógica para sair, redirecionar ou realizar qualquer ação necessária
+            window.location.href = '/'; // Redireciona para a página inicial, ou ajuste conforme necessário
+        }
+    };
+
     return (
         <div className="sidebar">
             <button className="btn-mobile" aria-label="Toggle Sidebar">
@@ -19,12 +29,12 @@ export const Acessos = () => {
                 </div>
                 <div className="divider"></div>
 
-                <a href="#" className="sidebar-link">
+                <a href="#" onClick={handleHomeClick} className="sidebar-link">
                     <FiHome className="icon" />
                     Principal
                 </a>
 
-                <a href="#" className="sidebar-link">
+                <a href="../relatorio" className="sidebar-link">
                     <FiBarChart2 className="icon" />
                     Relatório
                 </a>

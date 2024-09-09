@@ -1,7 +1,7 @@
 /* RecentContacts.css */
 .sidebar {
     width: 100%;
-    padding: 1rem; /* Diminuído o padding para melhorar em telas menores */
+    padding: 1rem;
     background-color: #91766d; /* Marrom acinzentado */
     border-radius: 5px;
     color: #ffffff; /* Texto branco */
@@ -21,71 +21,54 @@
 }
 
 .lista-recentes {
+    display: flex; /* Usado flexbox para organizar as boxes */
+    flex-wrap: wrap; /* Permite que as boxes quebrem a linha */
+    gap: 20px; /* Espaço entre as boxes */
+    margin-top: 20px;
+    padding: 10px;
+}
+
+
+.lista-recentes .produto-box {
     background-color: #ffffff; /* Fundo branco */
     padding: 10px;
-    border-radius: 5px;
-    margin-top: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     color: #000000; /* Texto preto */
+    width: calc(33.33% - 20px); /* Três boxes por linha, com espaço de 20px entre elas */
+    box-sizing: border-box;
 }
 
-.lista-recentes table {
-    width: 100%;
-    border-collapse: collapse;
+.lista-recentes .produto-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-.lista-recentes th {
-    background-color: #91766d; /* Marrom acinzentado */
-    color: #ffffff; /* Texto branco */
-    padding: 10px;
-    border: 1px solid #ccc; /* Borda cinza claro */
+.lista-recentes h4 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #91766d; /* Cor marrom acinzentado */
 }
 
-.lista-recentes td {
-    padding: 10px;
-    border: 1px solid #ccc; /* Borda cinza claro */
-    text-align: left;
-}
-.produtos-recentes{
+.produtos-recentes {
     font-size: larger;
     padding: 1rem;
     width: 100%;
     border-radius: 20px;
-    color:#ffffff;
+    color: #ffffff;
     background-color: #91766d;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .sidebar {
-        padding: 0.5rem; /* Ajuste de padding em telas menores */
-    }
-
-    .sidebar h3 {
-        font-size: 1.2rem; /* Tamanho do texto reduzido para melhor encaixe */
-        padding: 8px;
-    }
-
-    .recent-contacts {
-        padding: 8px;
-    }
-
-    .recent-contacts th, .recent-contacts td {
-        padding: 8px;
+    .lista-recentes .produto-box {
+        width: calc(50% - 20px); /* Em telas menores, mostrar 2 boxes por linha */
     }
 }
 
 @media (max-width: 480px) {
-    .sidebar {
-        padding: 0.25rem; /* Padding ainda menor para telas muito pequenas */
-    }
-
-    .sidebar h3 {
-        font-size: 1rem; /* Tamanho do texto ainda menor */
-        padding: 6px;
-    }
-
-    .recent-contacts th, .recent-contacts td {
-        padding: 5px; /* Redução do padding nas células da tabela */
+    .lista-recentes .produto-box {
+        width: 100%; /* Em telas muito pequenas, mostrar 1 box por linha */
     }
 }

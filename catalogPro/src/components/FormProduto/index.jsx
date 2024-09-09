@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './FormProduto.css';
 
 export const FormProduto = ({ adicionarProduto }) => {
@@ -11,6 +11,11 @@ export const FormProduto = ({ adicionarProduto }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!foto) {
+            alert('Por favor, adicione uma foto do produto.');
+            return;
+        }
+
         const novoProduto = {
             nome,
             preco,
@@ -20,6 +25,8 @@ export const FormProduto = ({ adicionarProduto }) => {
             foto,
         };
         adicionarProduto(novoProduto);
+
+        // Limpar o formulário após o envio
         setNome('');
         setPreco('');
         setDistribuidora('');
@@ -51,6 +58,7 @@ export const FormProduto = ({ adicionarProduto }) => {
                     name="preco" 
                     placeholder="Preço do Produto" 
                     value={preco}
+                    step="0.01"
                     onChange={(e) => setPreco(e.target.value)}
                     required 
                 /><br />
@@ -63,15 +71,14 @@ export const FormProduto = ({ adicionarProduto }) => {
                     required 
                 /><br />
                 <input 
-                    type="text" 
+                    type="date" 
                     name="validade" 
                     placeholder="Validade" 
                     value={validade}
                     onChange={(e) => setValidade(e.target.value)}
                     required 
                 /><br />
-                <input 
-                    type="text" 
+                <textarea 
                     name="descricao" 
                     placeholder="Descrição" 
                     value={descricao}
@@ -82,4 +89,4 @@ export const FormProduto = ({ adicionarProduto }) => {
             </form>
         </div>
     );
-}
+};

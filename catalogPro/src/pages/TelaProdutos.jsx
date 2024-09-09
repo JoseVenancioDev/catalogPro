@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './css/TelaProdutos.css';
 import { FormProduto } from '../components/FormProduto';
 import { VerProduto } from '../components/VerProduto';
@@ -12,21 +12,12 @@ export const TelaProdutos = () => {
     };
 
     return (
-
-
         <div className="main-container">
             <Acessos />
-            
             <div className="content">
-                <FormProduto adicionarProduto={adicionarProduto}/>
-                <VerProduto produtos={produtos}/>
+                <FormProduto adicionarProduto={adicionarProduto} />
+                <VerProduto produtos={produtos} />
             </div>
         </div>
-        // <Acessos />
-        // <div className="App">
-            
-        //     <FormProduto adicionarProduto={adicionarProduto} />
-        //     <VerProduto produtos={produtos} />
-        // </div>
     );
 };
