@@ -4,6 +4,7 @@ import { PagInicial } from '../pages/PagInicial';
 import { Login } from '../components/Login/Login';
 import { CadProdutos } from '../pages/CadProdutos';
 import { Cadastro } from '../components/Cadastro/Cadastro';
+import { Cadastro } from '../pages/Cadastro';
 
 export const RouteAsRouter = () => {
     return (
