@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './css/Cadastro.css';
+import './Cadastro.css';
 
 export function Cadastro() {
     const [photo, setPhoto] = useState(null);
