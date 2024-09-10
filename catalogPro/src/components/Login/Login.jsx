@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Certifique-se de que você está usando react-router-dom para roteamento
-import './css/Login.css';
+import './Login.css';
 
 export function Login() {
     const [username, setUsername] = useState('');
