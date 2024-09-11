@@ -2,8 +2,10 @@ import React from 'react';
 
 export function PagInicial() {
     return (
-        <div>
-            <h1>Página Inicial</h1>
+        <div header>
+            <h3>Página Inicial</h3>
+            <p>abbb</p>
+            <button>n</button>
         </div>
     );
 }

@@ -10,48 +10,6 @@ export function Cadastro() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleFileChange = (event) => {
-        setPhoto(event.target.files[0]);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        // Validação de senha
-        if (password !== confirmPassword) {
-            setError('As senhas não coincidem.');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('photo', photo);
-        formData.append('fullname', fullname);
-        formData.append('email', email);
-        formData.append('username', username);
-        formData.append('password', password);
-
-        try {
-            const response = await fetch('https://sua-api.com/cadastro', {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Cadastro bem-sucedido
-                console.log('Cadastro bem-sucedido:', data);
-                // Redirecionar ou exibir mensagem de sucesso
-                // Exemplo: navigate('/login');
-            } else {
-                setError(data.message || 'Erro ao cadastrar.');
-            }
-        } catch (error) {
-            setError('Erro ao se conectar com o servidor.');
-            console.error('Erro de cadastro:', error);
-        }
-    };
-
     return (
         <div className="signup-container">
             <h2>Cadastro</h2>
