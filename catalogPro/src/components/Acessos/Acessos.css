@@ -1,28 +1,50 @@
+/* Estilos gerais */
+* {
+    box-sizing: border-box; /* Para evitar problemas com padding e bordas */
+}
+
+/* Reseta margens e padding do body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal que envolve a barra lateral e o conteúdo */
+.main-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Evita rolagem indesejada */
+}
+
 /* Estilos da barra lateral */
 .sidebar {
     background-color: #343a40;
-    width: 250px;
-    height: 100vh;
+    width: 250px; /* Largura fixa */
+    height: 100vh; /* Altura completa da viewport */
     padding: 20px;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 2rem;
+    position: fixed; /* Fixado no lado esquerdo */
+    left: 0;
+    top: 0;
     transition: width 0.3s ease;
-    position: relative;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
 }
 
 /* Botão de alternância visível em telas pequenas */
 .btn-mobile {
     display: none;
-    position: absolute;
+    position: fixed; /* Mantém o botão visível no topo */
     top: 20px;
     right: 20px;
     background-color: transparent;
     border: none;
     color: white;
     font-size: 24px; /* Ajuste conforme necessário */
+    z-index: 1001; /* Garante que fique acima de outros elementos */
 }
 
 /* Conteúdo da barra lateral */
@@ -77,22 +99,31 @@
     text-align: center;
 }
 
-/* Media queries */
+/* Media queries para telas menores */
 @media (max-width: 890px) {
     .sidebar {
         width: 0;
+        padding: 0;
         overflow: hidden;
     }
 
     .btn-mobile {
         display: block;
     }
+    
+    /* Para ajustar o conteúdo ao layout reduzido */
+    .content {
+        margin-left: 0;
+    }
+}
 
-    .sidebar-content {
-        display: none;
+/* Media queries para telas maiores (desktops) */
+@media (min-width: 891px) {
+    .content {
+        margin-left: 250px; /* Espaço para a barra lateral */
     }
 
-    .copyright {
-        display: none;
+    .btn-mobile {
+        display: none; /* Oculta o botão de alternância em telas maiores */
     }
 }

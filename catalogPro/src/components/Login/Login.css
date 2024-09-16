@@ -1,59 +1,99 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #F6ECE3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Estilos da barra lateral */
+.sidebar {
+    background-color: #343a40;
+    width: 250px;
     height: 100vh;
-    margin: 0;
-}
-.login-container {
-    background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 2rem 0 0 2rem; /* Apenas arredonda o canto direito */
+    transition: width 0.3s ease;
+    position: fixed; /* Fixado no lado esquerdo da tela */
+    left: 0; /* Alinha a barra à esquerda */
+    top: 0; /* Garante que comece do topo da página */
 }
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #000000;
-}
-.login-container label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-.login-container input[type="email"],
-.login-container input[type="password"] {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #91766d;
+
+/* Botão de alternância visível em telas pequenas */
+.btn-mobile {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
-    color: #ffffff;
+    color: white;
+    font-size: 24px; /* Ajuste conforme necessário */
+}
+
+/* Conteúdo da barra lateral */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Avatar */
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Mantém o avatar alinhado à esquerda */
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.username {
+    font-size: 1.125rem; /* lg */
     font-weight: bold;
-    cursor: pointer;
-    margin: 0.5rem;
-    margin-left: 0;
 }
-.login-container button:hover {
-    background-color: #91766d;
+
+/* Divider */
+.divider {
+    width: 100%;
+    border-bottom: 1px solid #6c757d;
+    padding-bottom: 10px;
 }
-.login-container .register-link {
-    display: block;
+
+/* Links e ícones */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem; /* Ajuste conforme necessário */
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 20px; /* Ajuste conforme necessário */
+}
+
+/* Texto de copyright */
+.copyright {
+    font-size: 0.875rem; /* sm */
     text-align: center;
-    margin-top: 10px;
-    color: #91766d;
-    font-weight: 10;
 }
-.login-container .register-link:hover {
-    text-decoration: underline;
+
+/* Media queries */
+@media (max-width: 890px) {
+    .sidebar {
+        overflow: hidden;
+    }
+
+    .btn-mobile {
+        display: block;
+    }
+
+    .sidebar-content {
+        display: none;
+    }
+
+    .copyright {
+        display: none;
+    }
 }
