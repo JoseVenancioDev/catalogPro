@@ -1,7 +1,30 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Login.css';
 
 export function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await axios.post('http://localhost/catalogPro/server/login.php', {
+                email_usuario: email,
+                senha_usuario: password,
+            });
+
+            if (response.data.success) {
+                window.location.href = '/produtos';
+            } else {
+                setError(response.data.message);
+            }
+        } catch (err) {
+            setError('Erro ao fazer login. Verifique suas credenciais.');
+        }
+    };
 
     return (
         <div className="login-container">
