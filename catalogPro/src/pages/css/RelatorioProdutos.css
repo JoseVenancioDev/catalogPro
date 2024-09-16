@@ -1,0 +1,42 @@
+.relatorio{
+    display: flex;
+}
+.relatorio-produtos {
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    color: #000;
+}
+
+.relatorio-produtos h3 {
+    background-color: #91766d; /* Marrom acinzentado */
+    color: #ffffff; /* Texto branco */
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.relatorio-produtos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.relatorio-produtos th,
+.relatorio-produtos td {
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda cinza claro */
+    text-align: left;
+}
+
+.relatorio-produtos th {
+    background-color: #91766d; /* Marrom acinzentado */
+    color: #ffffff; /* Texto branco */
+}
+
+.relatorio-produtos td img {
+    max-width: 100px; /* Largura máxima para imagens */
+    height: auto;
+    border-radius: 5px;
+}
