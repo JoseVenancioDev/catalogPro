@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['email_usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'dbcon.php';
 
 $sql = "SELECT * FROM tb_produto";
@@ -19,6 +25,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h1>Catálogo de Produtos</h1>
+    <p>Bem-vindo, <?php echo $_SESSION['email_usuario']; ?>! <a href="logout.php">Logout</a></p>
     <a href="create.php">Adicionar Produto</a>
     <table border="1">
         <tr>
@@ -40,7 +47,6 @@ $result = $conn->query($sql);
             <?php
                 $fotoProduto = htmlspecialchars($row['foto_produto']);
                 $caminhoCompleto = "img/" . $fotoProduto;
-                // Verifica se o caminho da imagem é válido
                 if (file_exists($caminhoCompleto) && !empty($fotoProduto)): ?>
                     <img src="<?php echo $caminhoCompleto; ?>" alt="Foto do Produto" class="thumbnail">
                 <?php else: ?>
@@ -49,7 +55,7 @@ $result = $conn->query($sql);
             </td>
             <td>
                 <a href="edit.php?id=<?php echo $row['id_produto']; ?>">Editar</a>
-                <a href="delete.php?id=<?php echo $row['id_produto'] ; ?>">Excluir</a>
+                <a href="delete.php?id=<?php echo $row['id_produto']; ?>">Excluir</a>
             </td>
         </tr>
         <?php endwhile; ?>
