@@ -1,0 +1,132 @@
+[33mcommit c16e901b8badfd41bcecc547b8ee36b272593c05[m[33m ([m[1;36mHEAD -> [m[1;32mFeature-03-cadastroProdutos[m[33m, [m[1;31morigin/Feature-03-cadastroProdutos[m[33m)[m
+Author: andre-gusto <andre.lopes4808@gmail.com>
+Date:   Tue Sep 17 07:34:00 2024 -0300
+
+    CRUD de pagina cadastro
+
+[33mcommit 20244f72690596091ab71216c14157b833ddfe7d[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Mon Sep 16 13:07:07 2024 -0300
+
+    Adicionando media query no acesso
+
+[33mcommit a87dc25a3f32a9e4aa0b8686b0afe9d99639f6af[m
+Merge: 9e36eae 374b870
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Mon Sep 16 11:20:53 2024 -0300
+
+    Merge branch 'Feature-03-cadastroProdutos' of https://github.com/JoseVenancioDev/catalogPro into Feature-03-cadastroProdutos
+
+[33mcommit 9e36eaecec05106423b919e86d92a0f51554fa47[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Mon Sep 16 11:20:38 2024 -0300
+
+    aaa
+
+[33mcommit 594f14f0cc8d42e3ca94c80d4beb47a53efe1b6d[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Mon Sep 16 11:11:21 2024 -0300
+
+    Ajustando css
+
+[33mcommit 7bc00ae67fc3a64b1ec0e4821b194d041a4cf1a9[m
+Author: José Venâncio <josevenanciodev@gmail.com>
+Date:   Sun Sep 15 22:52:26 2024 -0300
+
+    Arquivos de lógica php
+
+[33mcommit 814dbb202116f25c3219fb9daabc861799031080[m
+Author: José Venâncio <josevenanciodev@gmail.com>
+Date:   Sun Sep 15 22:50:22 2024 -0300
+
+    Inserindo php no cadastro e login
+
+[33mcommit 2e952b3e09ea906e2a70cefbea8688167323ed34[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Sep 11 07:53:52 2024 -0300
+
+    aa
+
+[33mcommit 8e63fe7b00ffa7a9d1ffa6c7c3fff0e64201709f[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Tue Sep 10 07:51:10 2024 -0300
+
+    Tornando Login componente
+
+[33mcommit 374b87093a831a44f3e506db4def3b2fba14dbef[m
+Author: José Venâncio <josevenanciodev@gmail.com>
+Date:   Mon Sep 9 14:42:02 2024 -0300
+
+    Avançando no relatório
+
+[33mcommit f58e74cea251c6f15335ce92ab01f2c6f5161d06[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Sep 4 08:47:12 2024 -0300
+
+    Limitando o recentes a 5
+
+[33mcommit e3ea77d635ce6a29f2652d51df064d8195aeac31[m
+Author: alice-silva <4lice.m4rtins@gmail.com>
+Date:   Wed Sep 4 08:44:41 2024 -0300
+
+    Commit Completo
+
+[33mcommit 1827bb29d815f37d5f00ed92f8782e6863af0326[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Sep 4 08:21:41 2024 -0300
+
+    Parte lógica
+
+[33mcommit f4555db27f0dc202ffd2d0e044041584bb5b3fb0[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Sep 4 07:50:16 2024 -0300
+
+    Layout do cadastro pré-concluido
+
+[33mcommit 934b7ea12d4cee8e6c91fe260f091760bfed51e9[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Fri Aug 30 16:45:39 2024 -0300
+
+    Iniciando a responsividade
+
+[33mcommit 727f2b4bf1d169fd1c53ecc6ba5f36130e5b965c[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Thu Aug 29 12:07:49 2024 -0300
+
+    Iniciando o cadastro
+
+[33mcommit 13f0cc09355cfbbe41666255af88ea0fd28d360b[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Thu Aug 29 10:31:52 2024 -0300
+
+    Resolvendo conflitos
+
+[33mcommit 2b6f2d809c606c1e6ad8be351d14d1a20c3ddf3d[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Aug 28 08:48:36 2024 -0300
+
+    Esboçando projeto
+
+[33mcommit 1ab609d6cc283e6a03736a8714b6a80f9294fb9a[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Aug 28 08:08:34 2024 -0300
+
+    Inserindo rotas
+
+[33mcommit ee79ffddf52859015b28ee491379abda97aaa334[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Wed Aug 28 07:23:11 2024 -0300
+
+    Concluindo configuração básica
+
+[33mcommit 333353dedc3ae66492f114bec00ce3b6dafdf467[m
+Author: JoseVenancioDev <josevenanciodev@gmail.com>
+Date:   Mon Aug 26 12:23:51 2024 -0300
+
+    Corrigindo erro na key
+
+[33mcommit 61224cf49449b8e74479b7c2dd0913256fc40587[m
+Author: José Venâncio <josevenanciodev@gmail.com>
+Date:   Sun Aug 25 12:21:34 2024 -0300
+
+    Iniciando o projeto
