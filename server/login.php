@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -22,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['senha_usuario'])) {
+            $_SESSION['email_usuario'] = $email;
             echo json_encode(['success' => true, 'message' => 'Login realizado com sucesso!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Email ou senha inválidos.']);
