@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Certifique-se de que você está usando react-router-dom para roteamento
+import axios from 'axios';
 import './Login.css';
 
 export function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const [error, setError] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    
-        if (username && password) {
-            console.log('Usuário:', username);
-            console.log('Senha:', password);
-            navigate('/bemvindo');
-        } else {
-            alert('Por favor, preencha todos os campos.');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost/catalogPro/server/login.php', {
+                email_usuario: email,
+                senha_usuario: password,
+            });
+
+            if (response.data.success) {
+                window.location.href = '/produtos';
+            } else {
+                setError(response.data.message);
+            }
+        } catch (err) {
+            setError('Erro ao fazer login. Verifique suas credenciais.');
         }
     };
 
@@ -23,13 +30,13 @@ export function Login() {
         <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Usuário:</label>
+                <label htmlFor="email">Email:</label>
                 <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                 />
 
@@ -45,7 +52,8 @@ export function Login() {
 
                 <button type="submit">Entrar</button>
             </form>
-            <a href="/bemvindo" className="register-link">Não tem uma conta? Cadastre-se</a>
+            {error && <p className="error-message">{error}</p>}
+            <a href="/" className="register-link">Não tem uma conta? Cadastre-se</a>
         </div>
     );
 }

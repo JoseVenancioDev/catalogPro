@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Cadastro.css';
 
 export function Cadastro() {
-    const [photo, setPhoto] = useState(null);
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [photo, setPhoto] = useState(null);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
-    const handleFileChange = (event) => {
-        setPhoto(event.target.files[0]);
+    const handleFileChange = (e) => {
+        setPhoto(e.target.files[0]);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Formulário enviado');
 
-        // Validação de senha
         if (password !== confirmPassword) {
-            setError('As senhas não coincidem.');
+            setError('As senhas não conferem.');
             return;
         }
 
@@ -29,96 +31,90 @@ export function Cadastro() {
         formData.append('email', email);
         formData.append('username', username);
         formData.append('password', password);
+        formData.append('confirm_password', confirmPassword);
 
         try {
-            const response = await fetch('https://sua-api.com/cadastro', {
-                method: 'POST',
-                body: formData,
+            const response = await axios.post('http://localhost/catalogPro/server/cadastro.php', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
-            const data = await response.json();
+            console.log('Resposta do servidor:', response.data);
 
-            if (response.ok) {
-                // Cadastro bem-sucedido
-                console.log('Cadastro bem-sucedido:', data);
-                // Redirecionar ou exibir mensagem de sucesso
-                // Exemplo: navigate('/login');
+            if (response.data.success) {
+                setSuccess('Cadastro realizado com sucesso!');
+                setError('');
             } else {
-                setError(data.message || 'Erro ao cadastrar.');
+                setError(response.data.message);
+                setSuccess('');
             }
-        } catch (error) {
-            setError('Erro ao se conectar com o servidor.');
-            console.error('Erro de cadastro:', error);
+        } catch (err) {
+            console.error('Erro ao enviar o formulário:', err);
+            setError('Ocorreu um erro ao enviar o formulário.');
+            setSuccess('');
         }
     };
 
     return (
         <div className="signup-container">
-            <h2>Cadastro</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="photo">Foto de perfil:</label>
-                <input 
-                    type="file" 
-                    id="photo" 
-                    name="photo" 
-                    accept="image/*" 
-                    onChange={handleFileChange} 
-                    required 
-                />
-
                 <label htmlFor="fullname">Nome Completo:</label>
-                <input 
-                    type="text" 
-                    id="fullname" 
-                    name="fullname" 
+                <input
+                    type="text"
+                    id="fullname"
                     value={fullname}
                     onChange={(e) => setFullname(e.target.value)}
-                    required 
+                    required
                 />
 
                 <label htmlFor="email">Email:</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required 
+                    required
                 />
 
-                <label htmlFor="username">Usuário:</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
+                <label htmlFor="username">Nome de Usuário:</label>
+                <input
+                    type="text"
+                    id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required 
+                    required
                 />
 
                 <label htmlFor="password">Senha:</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
+                <input
+                    type="password"
+                    id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required 
+                    required
                 />
 
-                <label htmlFor="confirm_password">Confirme a Senha:</label>
-                <input 
-                    type="password" 
-                    id="confirm_password" 
-                    name="confirm_password" 
+                <label htmlFor="confirm-password">Confirmar Senha:</label>
+                <input
+                    type="password"
+                    id="confirm-password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    required 
+                    required
+                />
+
+                <label htmlFor="photo">Foto:</label>
+                <input
+                    type="file"
+                    id="photo"
+                    onChange={handleFileChange}
                 />
 
                 <button type="submit">Cadastrar</button>
             </form>
             {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
             <a href="/login" className="login-link">Já tem uma conta? Faça login</a>
         </div>
     );

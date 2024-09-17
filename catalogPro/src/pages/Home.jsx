@@ -1,9 +1,9 @@
 import React from "react";
-import { Cadastro } from "../components/Cadastro/Cadastro";
+import { Login } from "../components/Login/Login";
 
 export function Home () {
     return (
-        <Cadastro />
+        <Login />
         )
 
 }
