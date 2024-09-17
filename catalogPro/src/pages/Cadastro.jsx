@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Cadastro.css';
+import './css/Cadastro.css';
 
 export function Cadastro() {
-    const [photo, setPhoto] = useState(null);
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -12,21 +11,16 @@ export function Cadastro() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const handleFileChange = (e) => {
-        setPhoto(e.target.files[0]);
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Formulário enviado');
 
         if (password !== confirmPassword) {
             setError('As senhas não conferem.');
             return;
         }
 
+        // Preparando os dados para envio
         const formData = new FormData();
-        formData.append('photo', photo);
         formData.append('fullname', fullname);
         formData.append('email', email);
         formData.append('username', username);
@@ -39,8 +33,6 @@ export function Cadastro() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
-            console.log('Resposta do servidor:', response.data);
 
             if (response.data.success) {
                 setSuccess('Cadastro realizado com sucesso!');
@@ -58,66 +50,50 @@ export function Cadastro() {
 
     return (
         <div className="signup-container">
-            <h2>Cadastro</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="photo">Foto de perfil:</label>
-                <input 
-                    type="file" 
-                    id="photo" 
-                    name="photo" 
-                    accept="image/*" 
-                    onChange={handleFileChange} 
-                    required 
-                />
-
                 <label htmlFor="fullname">Nome Completo:</label>
-                <input 
-                    type="text" 
-                    id="fullname" 
-                    name="fullname" 
+                <input
+                    type="text"
+                    id="fullname"
                     value={fullname}
                     onChange={(e) => setFullname(e.target.value)}
-                    required 
+                    required
                 />
 
                 <label htmlFor="email">Email:</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required 
+                    required
                 />
 
-                <label htmlFor="username">Usuário:</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
+                <label htmlFor="username">Nome de Usuário:</label>
+                <input
+                    type="text"
+                    id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required 
+                    required
                 />
 
                 <label htmlFor="password">Senha:</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
+                <input
+                    type="password"
+                    id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required 
+                    required
                 />
 
-                <label htmlFor="confirm_password">Confirme a Senha:</label>
-                <input 
-                    type="password" 
-                    id="confirm_password" 
-                    name="confirm_password" 
+                <label htmlFor="confirm-password">Confirmar Senha:</label>
+                <input
+                    type="password"
+                    id="confirm-password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    required 
+                    required
                 />
 
                 <button type="submit">Cadastrar</button>
