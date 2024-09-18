@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['email_usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'dbcon.php';
 
 $sql = "SELECT * FROM tb_produto";
@@ -9,7 +15,7 @@ $result = $conn->query($sql);
 <html>
 <head>
     <title>Catálogo de Produtos</title>
-    <a href="css/index.css"></a>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <header>
