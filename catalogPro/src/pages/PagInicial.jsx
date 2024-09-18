@@ -22,6 +22,10 @@ export function PagInicial() {
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#contact">Contato</a></li>
                 </ul>
+                <div className="nav-buttons">
+                    <a href="#register">Cadastro</a>
+                    <a href="#login">Login</a>
+                </div>
             </div>
         </nav>
         <div className="hero">
@@ -55,6 +59,12 @@ export function PagInicial() {
         </div>
       </section>
 
+      <section id="button">
+        <div className="button">
+            <button>Conhecer Mais</button>
+        </div>
+      </section>
+
       <section id="about">
         <h2>ABOUT</h2>
         <p>Com o CatalogPro, você poderá catalogar seus produtos de maneira simples e eficiente.</p>
@@ -62,3 +72,4 @@ export function PagInicial() {
     </>
   );
 }
+
