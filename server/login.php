@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user && password_verify($password, $user['senha_usuario'])) {
             $_SESSION['email_usuario'] = $email;
+            $_SESSION['id_usuario'] = $user['id_usuario']; // Adicionando ID do usuário à sessão
             echo json_encode(['success' => true, 'message' => 'Login realizado com sucesso!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Email ou senha inválidos.']);
