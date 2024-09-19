@@ -1,22 +1,43 @@
-body {
-  font-family: 'Roboto', sans-serif;
+/* Certifique-se de que o HTML e o body têm altura total */
+html, body {
   margin: 0;
   padding: 0;
-  color: white;
+  height: 100%;
 }
 
+/* Defina o layout flexível para o body */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adiciona espaçamento ao topo para evitar que o conteúdo se sobreponha ao header */
+body {
+  padding-top: 60px; /* Ajuste o valor conforme necessário */
+}
+
+/* Define um espaçamento inferior para o conteúdo principal, para evitar sobreposição do footer */
+.main-content {
+  flex: 1;
+  margin-bottom: 60px; /* Ajuste o valor conforme necessário */
+}
+
+/* Header */
 header {
   background-color: #00bfa5;
   text-align: center;
-  width: 100vw;
+  width: 100%;
 }
-nav{
-  padding: 2rem;
+
+/* Navegação */
+nav {
   background-color: #2C3E50;
 }
+
 nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 nav ul li {
@@ -30,6 +51,7 @@ nav ul li a {
   font-weight: bold;
 }
 
+/* Hero Section */
 .hero {
   padding: 50px 0;
   background-color: #00bfa5;
@@ -46,11 +68,13 @@ nav ul li a {
   font-size: 36px;
 }
 
+/* Seções principais */
 section {
   padding: 50px 20px;
   text-align: center;
 }
 
+/* Produtos */
 #products {
   background-color: #f0f0f0;
 }
@@ -74,6 +98,7 @@ section {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Sobre */
 #about {
   background-color: #00bfa5;
   color: white;
@@ -85,95 +110,167 @@ section {
   line-height: 1.5;
   font-size: 16px;
 }
-a{
+
+/* Links */
+a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
 }
-#h2-produto{
+
+#h2-produto {
   color: black;
 }
 
+/* Botões */
 .button {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .button button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .button button:hover {
-    background-color: #45a049; 
+  background-color: #45a049; 
 } 
 
+/* Navegação */
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 .nav-container .logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
 }
 
 .nav-container ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
 }
 
 .nav-container ul li {
-    display: inline;
+  display: inline;
 }
 
 .nav-container ul li a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-container ul li a:hover {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4CAF50;
+  color: white;
 }
 
 .nav-buttons {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .nav-buttons a {
-    text-decoration: none;
-    color: #4CAF50;
-    background-color: white;
-    border: 2px solid #4CAF50;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  color: #4CAF50;
+  background-color: white;
+  border: 2px solid #4CAF50;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-buttons a:hover {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Rodapé */
+footer {
+  background-color: #2C3E50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+footer a {
+  color: #00bfa5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .social-media {
+  margin: 10px 0;
+}
+
+footer .social-media a {
+  margin: 0 10px;
+  font-size: 24px;
+  color: white;
+  transition: color 0.3s;
+}
+
+footer .social-media a:hover {
+  color: #00bfa5;
+}
+
+/* Adiciona uma linha horizontal separadora no rodapé */
+footer .separator {
+  border-top: 1px solid #4CAF50;
+  margin: 10px 0;
+}
+.button-link {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.button-link:hover {
+  background-color: #45a049;
 }

@@ -6,58 +6,51 @@ header('Content-Type: application/json');
 
 include 'config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $photo = $_FILES['photo'];
-    $fullname = $_POST['fullname'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
+// Receber dados JSON
+$inputJSON = file_get_contents('php://input');
+$input = json_decode($inputJSON, TRUE); // Decodifica o JSON em um array associativo
 
-    if (empty($fullname) || empty($email) || empty($username) || empty($password)) {
-        echo json_encode(['success' => false, 'message' => 'Todos os campos são obrigatórios.']);
-        exit;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(['success' => false, 'message' => 'Email inválido.']);
-        exit;
-    }
-
-    if ($password !== $confirmPassword) {
-        echo json_encode(['success' => false, 'message' => 'As senhas não conferem.']);
-        exit;
-    }
-
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-
-$photoPath = null;
-if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = 'uploads/';
-    if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
-    
-    $photoPath = $uploadDir . uniqid() . '-' . basename($photo['name']);
-    
-    if (move_uploaded_file($photo['tmp_name'], $photoPath)) {
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Erro ao mover o arquivo de imagem.']);
-        exit;
-    }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Erro no upload da imagem: ' . $photo['error']]);
+// Verificar se os dados existem no array e adicionar mensagens de depuração
+if (is_null($input)) {
+    echo json_encode(['success' => false, 'message' => 'Dados inválidos recebidos.']);
     exit;
 }
 
-    try {
-        $stmt = $pdo->prepare('INSERT INTO tb_usuario (nome_usuario, email_usuario, senha_usuario, data_cadastro, foto_usuario) VALUES (?, ?, ?, CURDATE(), ?)');
-        $stmt->execute([$fullname, $email, $hashedPassword, $photoPath]);
+$fullname = $input['fullname'] ?? '';
+$email = $input['email'] ?? '';
+$username = $input['username'] ?? '';
+$password = $input['password'] ?? '';
+$confirmPassword = $input['confirmPassword'] ?? ''; // Certifique-se de que esta chave corresponde ao JSON enviado
 
-        echo json_encode(['success' => true, 'message' => 'Cadastro realizado com sucesso!']);
-    } catch (PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar: ' . $e->getMessage()]);
-    }
+// Verificar se todos os campos estão preenchidos
+if (empty($fullname) || empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
+    echo json_encode(['success' => false, 'message' => 'Todos os campos são obrigatórios.']);
+    exit;
+}
+
+// Verificar se o email é válido
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(['success' => false, 'message' => 'Email inválido.']);
+    exit;
+}
+
+// Verificar se as senhas coincidem
+if ($password !== $confirmPassword) {
+    echo json_encode(['success' => false, 'message' => 'As senhas não conferem.']);
+    exit;
+}
+
+// Criptografar a senha
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+try {
+    // Preparar e executar a inserção no banco de dados
+    $stmt = $pdo->prepare('INSERT INTO tb_usuario (nome_usuario, email_usuario, senha_usuario, data_cadastro) VALUES (?, ?, ?, CURDATE())');
+    $stmt->execute([$fullname, $email, $hashedPassword]);
+
+    echo json_encode(['success' => true, 'message' => 'Cadastro realizado com sucesso!']);
+} catch (PDOException $e) {
+    // Captura e exibe a mensagem de erro detalhada
+    echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar: ' . $e->getMessage()]);
 }
 ?>

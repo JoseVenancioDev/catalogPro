@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Login.css';
+import './css/Login.css';
 
 export function Login() {
     const [email, setEmail] = useState('');
@@ -53,7 +53,7 @@ export function Login() {
                 <button type="submit">Entrar</button>
             </form>
             {error && <p className="error-message">{error}</p>}
-            <a href="/" className="register-link">Não tem uma conta? Cadastre-se</a>
+            <a href="/cadastro" className="register-link">Não tem uma conta? Cadastre-se</a>
         </div>
     );
 }
