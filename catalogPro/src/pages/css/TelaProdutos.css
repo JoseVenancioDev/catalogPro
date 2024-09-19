@@ -1,18 +1,95 @@
+/* Aplicando box-sizing para evitar problemas com padding/bordas */
+* {
+    box-sizing: border-box;
+}
+
+/* Reseta margens e padding do body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal que envolve a barra lateral e o conteúdo */
 .main-container {
     display: flex;
     height: 100vh;
+    overflow: hidden; /* Evita rolagem indesejada no container */
 }
 
-.content {
-    flex: 1;
-    padding: 20px;
+/* Estilos da barra lateral */
+.sidebar {
+    background-color: #343a40;
+    width: 250px; /* Largura fixa */
+    height: 100vh; /* Altura completa da viewport */
+    color: white;
+    border-radius: 2rem 0 0 2rem; /* Arredonda os cantos à direita */
+    transition: width 0.3s ease;
+    position: fixed; /* Fixado no lado esquerdo */
+    left: 0;
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
 }
-.sidebar-toggle-btn{
+
+/* Estilos do conteúdo principal */
+.content {
+    flex: 1; /* O conteúdo principal ocupa todo o espaço restante */
+    padding: 20px;
+    margin-left: 250px; /* Espaçamento para a barra lateral */
+    transition: margin-left 0.3s ease; /* Transição suave ao fechar a barra */
+}
+
+/* Botão de alternância da barra lateral */
+.sidebar-toggle-btn {
     position: fixed;
     top: 20px;
     right: 20px;
     cursor: pointer;
     font-size: 24px;
+    background-color: transparent;
+    border: none;
+    color: #343a40;
+    z-index: 1001; /* Fica sobre todos os elementos */
 }
 
+/* Estilos para quando a barra lateral estiver escondida */
+.sidebar.collapsed {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
+.content.collapsed {
+    margin-left: 0;
+}
+
+/* Media queries para telas menores */
+@media (max-width: 890px) {
+    .sidebar {
+        width: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .sidebar-toggle-btn {
+        display: block;
+    }
+}
+
+/* Media queries para desktops (largura mínima) */
+@media (min-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Largura fixa para desktops */
+    }
+
+    .content {
+        margin-left: 250px; /* Espaçamento para a barra lateral */
+    }
+
+    .sidebar-toggle-btn {
+        display: none; /* Oculta o botão de alternância em telas maiores */
+    }
+}

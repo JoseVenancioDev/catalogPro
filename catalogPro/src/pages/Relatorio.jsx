@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Acessos } from '../components/Acessos';
 import './css/RelatorioProdutos.css';
 
-export function RelatorioProdutos() {
+export const Relatorio = () => {
     // Dados de teste
     const [produtos, setProdutos] = useState([
         {

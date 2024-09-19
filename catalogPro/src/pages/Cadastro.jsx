@@ -1,56 +1,58 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './css/Cadastro.css';
 
 export function Cadastro() {
+    const [photo, setPhoto] = useState(null);
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
+    const [success, setSuccess] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    
-        // Validação de senha
+    const handleFileChange = (e) => {
+        setPhoto(e.target.files[0]);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Formulário enviado');
+
         if (password !== confirmPassword) {
-            setError('As senhas não coincidem.');
-            setSuccessMessage('');
+            setError('As senhas não conferem.');
             return;
         }
-    
-        const userData = {
-            fullname,
-            email,
-            username,
-            password,
-            confirmPassword // Certifique-se de que esta chave corresponde ao que o PHP espera
-        };
-    
+
+        const formData = new FormData();
+        formData.append('photo', photo);
+        formData.append('fullname', fullname);
+        formData.append('email', email);
+        formData.append('username', username);
+        formData.append('password', password);
+        formData.append('confirm_password', confirmPassword);
+
         try {
-            const response = await fetch('http://localhost/catalogPro/server/cadastro.php', {
-                method: 'POST',
+            const response = await axios.post('http://localhost/catalogPro/server/cadastro.php', formData, {
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
+                    'Content-Type': 'multipart/form-data'
+                }
             });
-    
-            const data = await response.json();
-    
-            if (response.ok) {
-                setSuccessMessage(data.message);
+
+            console.log('Resposta do servidor:', response.data);
+
+            if (response.data.success) {
+                setSuccess('Cadastro realizado com sucesso!');
                 setError('');
-                // Redirecionar ou exibir mensagem de sucesso
-                // Exemplo: navigate('/login');
             } else {
-                setError(data.message || 'Erro ao cadastrar.');
-                setSuccessMessage('');
+                setError(response.data.message);
+                setSuccess('');
             }
-        } catch (error) {
-            setError('Erro ao se conectar com o servidor.');
-            console.error('Erro de cadastro:', error);
+        } catch (err) {
+            console.error('Erro ao enviar o formulário:', err);
+            setError('Ocorreu um erro ao enviar o formulário.');
+            setSuccess('');
         }
     };
 
@@ -58,6 +60,16 @@ export function Cadastro() {
         <div className="signup-container">
             <h2>Cadastro</h2>
             <form onSubmit={handleSubmit}>
+                <label htmlFor="photo">Foto de perfil:</label>
+                <input 
+                    type="file" 
+                    id="photo" 
+                    name="photo" 
+                    accept="image/*" 
+                    onChange={handleFileChange} 
+                    required 
+                />
+
                 <label htmlFor="fullname">Nome Completo:</label>
                 <input 
                     type="text" 
@@ -111,7 +123,7 @@ export function Cadastro() {
                 <button type="submit">Cadastrar</button>
             </form>
             {error && <p className="error-message">{error}</p>}
-            {successMessage && <p className="success-message">{successMessage}</p>}
+            {success && <p className="success-message">{success}</p>}
             <a href="/login" className="login-link">Já tem uma conta? Faça login</a>
         </div>
     );
