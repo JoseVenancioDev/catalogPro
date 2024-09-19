@@ -111,10 +111,12 @@ export const Relatorio = () => {
                                                 width="100"
                                             />
                                         ) : 'Sem imagem'}</td>
+                                        <div className="edit">
                                         <td>
                                             <button onClick={salvarEdicao}>Salvar</button>
                                             <button onClick={cancelarEdicao}>Cancelar</button>
                                         </td>
+                                        </div>
                                     </>
                                 ) : (
                                     <>
@@ -130,10 +132,12 @@ export const Relatorio = () => {
                                                 width="100"
                                             />
                                         ) : 'Sem imagem'}</td>
+                                        <div className="button">
                                         <td>
                                             <button onClick={() => iniciarEdicao(index)}>Editar</button>
                                             <button onClick={() => excluirProduto(index)}>Excluir</button>
                                         </td>
+                                        </div>
                                     </>
                                 )}
                             </tr>

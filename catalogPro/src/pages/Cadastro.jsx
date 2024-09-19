@@ -3,7 +3,6 @@ import axios from 'axios';
 import './css/Cadastro.css';
 
 export function Cadastro() {
-    const [photo, setPhoto] = useState(null);
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -11,10 +10,6 @@ export function Cadastro() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
-    const handleFileChange = (e) => {
-        setPhoto(e.target.files[0]);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +21,6 @@ export function Cadastro() {
         }
 
         const formData = new FormData();
-        formData.append('photo', photo);
         formData.append('fullname', fullname);
         formData.append('email', email);
         formData.append('username', username);
@@ -60,15 +54,6 @@ export function Cadastro() {
         <div className="signup-container">
             <h2>Cadastro</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="photo">Foto de perfil:</label>
-                <input 
-                    type="file" 
-                    id="photo" 
-                    name="photo" 
-                    accept="image/*" 
-                    onChange={handleFileChange} 
-                    required 
-                />
 
                 <label htmlFor="fullname">Nome Completo:</label>
                 <input 
