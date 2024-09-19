@@ -14,7 +14,7 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="index.css">
     <title>Catálogo de Produtos</title>
     <style>
         .thumbnail {
