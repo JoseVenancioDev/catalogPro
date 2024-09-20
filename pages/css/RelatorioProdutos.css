@@ -1,0 +1,133 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #F6ECE3, #00bfa5);
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.relatorio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem;
+}
+
+.relatorio-produtos {
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo com leve transparência */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 191, 165, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.relatorio-produtos:hover {
+    box-shadow: 0 8px 16px rgba(0, 191, 165, 0.4);
+}
+
+.relatorio-produtos h3 {
+    background-color: #00bfa5;
+    color: #ffffff;
+    text-align: center;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-size: 1.5rem; /* Aumentado para destaque */
+    font-weight: bold;
+    text-transform: uppercase; /* Letras maiúsculas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.relatorio-produtos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.relatorio-produtos th,
+.relatorio-produtos td {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.relatorio-produtos th {
+    background-color: #2C3E50;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase; /* Letras maiúsculas para cabeçalhos */
+}
+
+.relatorio-produtos td img {
+    max-width: 120px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.relatorio-produtos td img:hover {
+    transform: scale(1.05);
+}
+
+.button,
+.edit {
+    background-color: #00bfa5;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button:hover,
+.edit:hover {
+    background-color: #009c8f;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 191, 165, 0.3);
+}
+
+/* Adiciona uma borda ao redor dos botões ao focar */
+.button:focus,
+.edit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.3);
+}
+
+@media (max-width: 768px) {
+    .relatorio {
+        margin: 1rem;
+    }
+
+    .relatorio-produtos {
+        padding: 1rem;
+    }
+
+    .relatorio-produtos h3 {
+        font-size: 1.3rem; /* Ajustado para responsividade */
+        padding: 15px;
+    }
+
+    .relatorio-produtos td {
+        padding: 10px;
+    }
+
+    .button,
+    .edit {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
