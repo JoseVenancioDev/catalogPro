@@ -21,7 +21,7 @@ body {
 /* Estilos da barra lateral */
 .sidebar {
     background-color: #2C3E50; /* Azul escuro */
-    width: 250px; /* Largura fixa */
+    width: 20rem; /* Largura fixa */
     height: 100vh; /* Altura completa da viewport */
     padding: 20px;
     color: white;
@@ -99,7 +99,7 @@ body {
     align-items: center;
     text-decoration: none;
     color: white;
-    font-size: 1rem; /* Ajuste conforme necessário */
+    font-size: 1.5rem; /* Ajuste conforme necessário */
     padding: 10px; /* Padding para links */
     border-radius: 5px; /* Bordas arredondadas para links */
     transition: background 0.3s ease; /* Transição para hover */
