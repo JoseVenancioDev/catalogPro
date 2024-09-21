@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "bdjmf";
+$password = "";
 $dbname = "catalogo_produtos";
 
 try {

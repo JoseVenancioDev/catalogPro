@@ -33,7 +33,7 @@
     letter-spacing: 1px;
 }
 
-input {
+input, textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -43,12 +43,14 @@ input {
     background-color: #ffffff; /* Fundo branco */
     color: var(--cor-principal); /* Texto azul escuro */
     transition: border 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    font-size: 2rem;
 }
 
-input:focus {
+input:focus, textarea:focus {
     border: 1px solid var(--cor-principal);
     box-shadow: 0 0 5px rgba(44, 62, 80, 0.5);
     outline: none; /* Remove o contorno padrão */
+    color: whitesmoke;
     background-color: var(--cor-terciaria); /* Fundo azul claro ao focar */
 }
 
