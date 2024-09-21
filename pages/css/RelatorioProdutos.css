@@ -1,3 +1,21 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #F6ECE3, #00bfa5);
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .relatorio {
     display: flex;
     flex-direction: column;
@@ -6,10 +24,15 @@
 }
 
 .relatorio-produtos {
-    padding: 1rem;
-    background-color: #ffffff;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo com leve transparência */
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 191, 165, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.relatorio-produtos:hover {
+    box-shadow: 0 8px 16px rgba(0, 191, 165, 0.4);
 }
 
 .relatorio-produtos h3 {
@@ -19,8 +42,10 @@
     padding: 18px;
     border-radius: 10px;
     margin-bottom: 24px;
-    font-size: 1.25rem;
+    font-size: 1.5rem; /* Aumentado para destaque */
     font-weight: bold;
+    text-transform: uppercase; /* Letras maiúsculas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .relatorio-produtos table {
@@ -54,9 +79,6 @@
     transform: scale(1.05);
 }
 
-.form-section{
-    width: 120rem;
-}
 .button,
 .edit {
     background-color: #00bfa5;
@@ -95,7 +117,7 @@
     }
 
     .relatorio-produtos h3 {
-        font-size: 1.1rem;
+        font-size: 1.3rem; /* Ajustado para responsividade */
         padding: 15px;
     }
 

@@ -2,13 +2,14 @@
 .sidebar {
     width: 100%;
     padding: 1rem;
-    background-color: #91766d; /* Marrom acinzentado */
-    border-radius: 5px;
+    background-color: #253341; /* Azul escuro */
+    border-radius: 10px; /* Bordas mais arredondadas */
     color: #ffffff; /* Texto branco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
 .sidebar h3 {
-    background-color: #000000; /* Fundo preto */
+    background-color: #34495E; /* Azul médio */
     text-align: center;
     color: #ffffff; /* Texto branco */
     padding: 10px;
@@ -18,6 +19,7 @@
 
 .sidebar p {
     color: #ffffff; /* Texto branco */
+    font-size: 1rem; /* Tamanho de fonte ajustado */
 }
 
 .lista-recentes {
@@ -28,15 +30,20 @@
     padding: 10px;
 }
 
-
 .lista-recentes .produto-box {
     background-color: #ffffff; /* Fundo branco */
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    color: #000000; /* Texto preto */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: #253341; /* Texto na cor principal */
     width: calc(33.33% - 20px); /* Três boxes por linha, com espaço de 20px entre elas */
     box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efeitos de transição */
+}
+
+.lista-recentes .produto-box:hover {
+    transform: translateY(-5px); /* Eleva a box ao passar o mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra mais forte ao passar o mouse */
 }
 
 .lista-recentes .produto-box img {
@@ -48,7 +55,7 @@
 .lista-recentes h4 {
     margin: 10px 0;
     font-size: 1.2rem;
-    color: #91766d; /* Cor marrom acinzentado */
+    color: #009c8f; /* Cor vibrante para o título */
 }
 
 .produtos-recentes {
@@ -57,7 +64,8 @@
     width: 100%;
     border-radius: 20px;
     color: #ffffff;
-    background-color: #91766d;
+    background-color: #009c8f; /* Cor vibrante */
+    text-align: center; /* Centraliza o texto */
 }
 
 /* Responsividade */

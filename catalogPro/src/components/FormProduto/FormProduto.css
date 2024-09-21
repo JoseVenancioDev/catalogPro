@@ -1,42 +1,76 @@
 /* FormProduto.css */
+:root {
+    --cor-fundo: #f7f7f7; /* Fundo geral mais suave */
+    --cor-principal: #2C3E50; /* Azul escuro */
+    --cor-secundaria: #34495E; /* Azul médio */
+    --cor-terciaria: #5D6D7E; /* Azul claro */
+    --cor-texto: #ffffff; /* Texto branco */
+    --cor-borda: #ccc; /* Borda cinza claro */
+}
+
 .form-section {
     width: 100%;
     background-color: #ffffff; /* Fundo branco */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    color: #000000; /* Texto preto */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: var(--cor-principal);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-section:hover {
+    transform: translateY(-5px); /* Eleva a seção ao passar o mouse */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .form-section h2 {
-    background-color: #91766d; /* Marrom acinzentado */
-    color: #ffffff; /* Texto branco */
-    padding: 10px;
+    background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
+    color: var(--cor-texto); /* Texto branco */
+    padding: 15px;
     border-radius: 5px;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc; /* Borda cinza claro */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--cor-borda);
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: #F6ECE3; /* Fundo bege claro */
-    color: #000000; /* Texto preto */
+    background-color: #ffffff; /* Fundo branco */
+    color: var(--cor-principal); /* Texto azul escuro */
+    transition: border 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus {
+    border: 1px solid var(--cor-principal);
+    box-shadow: 0 0 5px rgba(44, 62, 80, 0.5);
+    outline: none; /* Remove o contorno padrão */
+    background-color: var(--cor-terciaria); /* Fundo azul claro ao focar */
 }
 
 button {
     width: 100%;
-    padding: 10px;
-    background-color: #91766d; /* Marrom acinzentado */
-    color: #ffffff; /* Texto branco */
+    padding: 12px;
+    background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
+    color: var(--cor-texto);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #715a53; /* Um tom mais escuro de marrom acinzentado para o hover */
+    background: linear-gradient(135deg, #253341, #34495E); /* Gradiente mais escuro */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0); /* Retorna ao normal ao clicar */
+    box-shadow: none; /* Remove a sombra ao clicar */
 }

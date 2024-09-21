@@ -111,7 +111,7 @@ export const Relatorio = () => {
                                                 width="100"
                                             />
                                         ) : 'Sem imagem'}</td>
-                                        <div className="button">
+                                        <div className="edit">
                                         <td>
                                             <button onClick={salvarEdicao}>Salvar</button>
                                             <button onClick={cancelarEdicao}>Cancelar</button>
