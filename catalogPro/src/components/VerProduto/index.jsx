@@ -13,6 +13,25 @@ export const VerProduto = ({ produtos = [] }) => {
         descricao: '',
         foto: null,
     });
+// Exemplo para listar produtos
+useEffect(() => {
+    fetch('listar-produtos.php')
+        .then(response => response.json())
+        .then(data => setProdutosExibidos(data));
+}, []);
+
+// Exemplo para adicionar um produto
+const adicionarProduto = async (novoProduto) => {
+    await fetch('create.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(novoProduto),
+    });
+    // Atualizar a lista de produtos
+    // ...
+};
 
     useEffect(() => {
         if (produtos.length > 0) {
