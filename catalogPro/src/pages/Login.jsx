@@ -27,6 +27,7 @@ export function Login() {
     };
 
     return (
+        <div className="allLogin">
         <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
@@ -54,6 +55,7 @@ export function Login() {
             </form>
             {error && <p className="error-message">{error}</p>}
             <a href="/cadastro" className="register-link">Não tem uma conta? Cadastre-se</a>
+        </div>
         </div>
     );
 }

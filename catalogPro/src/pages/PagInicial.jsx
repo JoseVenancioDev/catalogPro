@@ -13,6 +13,7 @@ import submarine from '../assets/img/portfolio/submarine.png';
 export function PagInicial() {
   return (
     <>
+    <div className="allPagInicial">
       <header>
         <nav>
           <div className="nav-container">
@@ -59,8 +60,8 @@ export function PagInicial() {
         </div>
       </section>
 
-      <section id="button">
-        <div className="button">
+      <section className="buttonBox">
+        <div>
           <a href="/cadastro" className="button-link">Conhecer Mais</a>
         </div>
       </section>
@@ -81,14 +82,13 @@ export function PagInicial() {
         <p>Email: contato@exemplo.com</p>
         <p>Telefone: (00) 0000-0000</p>
         
-        <div className="separator"></div>
-
         <div className="social-media">
           <a href="https://facebook.com" target="_blank" className="fab fa-facebook-f"></a>
           <a href="https://twitter.com" target="_blank" className="fab fa-twitter"></a>
           <a href="https://instagram.com" target="_blank" className="fab fa-instagram"></a>
         </div>
       </footer>
+      </div>
     </>
   );
 }

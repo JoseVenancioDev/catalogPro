@@ -1,27 +1,3 @@
-/* RecentContacts.css */
-.sidebar {
-    width: 100%;
-    padding: 1rem;
-    background-color: #253341; /* Azul escuro */
-    border-radius: 10px; /* Bordas mais arredondadas */
-    color: #ffffff; /* Texto branco */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
-}
-
-.sidebar h3 {
-    background-color: #34495E; /* Azul médio */
-    text-align: center;
-    color: #ffffff; /* Texto branco */
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.sidebar p {
-    color: #ffffff; /* Texto branco */
-    font-size: 1rem; /* Tamanho de fonte ajustado */
-}
-
 .lista-recentes {
     display: flex; /* Usado flexbox para organizar as boxes */
     flex-wrap: wrap; /* Permite que as boxes quebrem a linha */

@@ -1,15 +1,3 @@
-/* CardProduto.css */
-.card-produto {
-    background-color: #ffffff; /* Fundo branco */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    color: #000000; /* Texto preto */
-    width: calc(33.33% - 20px); /* Três cartões por linha */
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
 .card-produto img {
     max-width: 100%;
     height: auto;

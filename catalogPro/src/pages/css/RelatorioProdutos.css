@@ -2,10 +2,12 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin: 1.5rem;
+    margin-left: 30rem;
+
 }
 
 .relatorio-produtos {
+    max-width: 100rem;
     padding: 1rem;
     background-color: #ffffff;
     border-radius: 12px;
@@ -56,9 +58,6 @@
     transform: scale(1.05);
 }
 
-.form-section{
-    width: 120rem;
-}
 button, .edit {
     background-color: #00bfa5;
     color: #ffffff;

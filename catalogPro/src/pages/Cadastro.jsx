@@ -51,6 +51,9 @@ export function Cadastro() {
     };
 
     return (
+        <div className="allCadastro">
+
+        
         <div className="signup-container">
             <h2>Cadastro</h2>
             <form onSubmit={handleSubmit}>
@@ -110,6 +113,7 @@ export function Cadastro() {
             {error && <p className="error-message">{error}</p>}
             {success && <p className="success-message">{success}</p>}
             <a href="/login" className="login-link">Já tem uma conta? Faça login</a>
+        </div>
         </div>
     );
 }

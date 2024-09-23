@@ -1,21 +1,10 @@
-/* FormProduto.css */
-:root {
-    --cor-fundo: #f7f7f7; /* Fundo geral mais suave */
-    --cor-principal: #2C3E50; /* Azul escuro */
-    --cor-secundaria: #34495E; /* Azul médio */
-    --cor-terciaria: #5D6D7E; /* Azul claro */
-    --cor-texto: #ffffff; /* Texto branco */
-    --cor-borda: #ccc; /* Borda cinza claro */
-}
-
 .form-section {
-    width: 100%;
     background-color: #ffffff; /* Fundo branco */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
-    color: var(--cor-principal);
+    color: #2C3E50; /* Azul escuro */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -25,8 +14,8 @@
 }
 
 .form-section h2 {
-    background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
-    color: var(--cor-texto); /* Texto branco */
+    background: linear-gradient(135deg, #2C3E50, #34495E); /* Gradiente de azul escuro para médio */
+    color: #ffffff; /* Texto branco */
     padding: 15px;
     border-radius: 5px;
     text-align: center;
@@ -37,28 +26,28 @@ input, textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid var(--cor-borda);
+    border: 1px solid #ccc; /* Borda cinza claro */
     border-radius: 5px;
     box-sizing: border-box;
     background-color: #ffffff; /* Fundo branco */
-    color: var(--cor-principal); /* Texto azul escuro */
+    color: #2C3E50; /* Texto azul escuro */
     transition: border 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     font-size: 2rem;
 }
 
 input:focus, textarea:focus {
-    border: 1px solid var(--cor-principal);
+    border: 1px solid #2C3E50; /* Azul escuro */
     box-shadow: 0 0 5px rgba(44, 62, 80, 0.5);
     outline: none; /* Remove o contorno padrão */
     color: whitesmoke;
-    background-color: var(--cor-terciaria); /* Fundo azul claro ao focar */
+    background-color: #5D6D7E; /* Fundo azul claro ao focar */
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
-    color: var(--cor-texto);
+    background: linear-gradient(135deg, #2C3E50, #34495E); /* Gradiente de azul escuro para médio */
+    color: #ffffff; /* Texto branco */
     border: none;
     border-radius: 5px;
     cursor: pointer;
