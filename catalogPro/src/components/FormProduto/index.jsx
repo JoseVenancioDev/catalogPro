@@ -9,30 +9,39 @@ export const FormProduto = ({ adicionarProduto }) => {
     const [descricao, setDescricao] = useState('');
     const [foto, setFoto] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!foto) {
             alert('Por favor, adicione uma foto do produto.');
             return;
         }
 
-        const novoProduto = {
-            nome,
-            preco,
-            distribuidora,
-            validade,
-            descricao,
-            foto,
-        };
-        adicionarProduto(novoProduto);
+        const formData = new FormData();
+        formData.append('nome_produto', nome);
+        formData.append('descricao_produto', descricao);
+        formData.append('preco_produto', preco);
+        formData.append('data_validade', validade);
+        formData.append('foto_produto', foto);
 
-        // Limpar o formulário após o envio
-        setNome('');
-        setPreco('');
-        setDistribuidora('');
-        setValidade('');
-        setDescricao('');
-        setFoto(null);
+        const response = await fetch('cadastrar_produto.php', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(data.message); // Mensagem do PHP
+            // Limpar o formulário após o envio
+            setNome('');
+            setPreco('');
+            setDistribuidora('');
+            setValidade('');
+            setDescricao('');
+            setFoto(null);
+            adicionarProduto(); // Atualizar a lista de produtos, se necessário
+        } else {
+            alert('Erro ao cadastrar o produto.');
+        }
     };
 
     return (
