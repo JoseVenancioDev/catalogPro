@@ -1,12 +1,13 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "bdjmf";
+$password = "";
 $dbname = "catalogo_produtos";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Conexão falhou: " . $e->getMessage());
 }
 ?>
