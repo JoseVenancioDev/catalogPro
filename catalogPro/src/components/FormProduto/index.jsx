@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormProduto.css';
 
-export const FormProduto = ({ adicionarProduto }) => {
+export const FormProduto = () => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [distribuidora, setDistribuidora] = useState('');
@@ -9,30 +9,36 @@ export const FormProduto = ({ adicionarProduto }) => {
     const [descricao, setDescricao] = useState('');
     const [foto, setFoto] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!foto) {
-            alert('Por favor, adicione uma foto do produto.');
-            return;
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('preco', preco);
+        formData.append('distribuidora', distribuidora);
+        formData.append('validade', validade);
+        formData.append('descricao', descricao);
+        formData.append('foto', foto);
+
+        try {
+            const response = await fetch('http://localhost/create.php', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                alert('Produto cadastrado com sucesso!');
+                setNome('');
+                setPreco('');
+                setDistribuidora('');
+                setValidade('');
+                setDescricao('');
+                setFoto(null);
+            } else {
+                alert('Falha ao cadastrar produto.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar o formulário', error);
         }
-
-        const novoProduto = {
-            nome,
-            preco,
-            distribuidora,
-            validade,
-            descricao,
-            foto,
-        };
-        adicionarProduto(novoProduto);
-
-        // Limpar o formulário após o envio
-        setNome('');
-        setPreco('');
-        setDistribuidora('');
-        setValidade('');
-        setDescricao('');
-        setFoto(null);
     };
 
     return (
