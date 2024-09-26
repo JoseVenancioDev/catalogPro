@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormProduto.css';
 
-export const FormProduto = ({ adicionarProduto }) => {
+export const FormProduto = () => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [distribuidora, setDistribuidora] = useState('');
@@ -11,36 +11,33 @@ export const FormProduto = ({ adicionarProduto }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!foto) {
-            alert('Por favor, adicione uma foto do produto.');
-            return;
-        }
-
         const formData = new FormData();
-        formData.append('nome_produto', nome);
-        formData.append('descricao_produto', descricao);
-        formData.append('preco_produto', preco);
-        formData.append('data_validade', validade);
-        formData.append('foto_produto', foto);
+        formData.append('nome', nome);
+        formData.append('preco', preco);
+        formData.append('distribuidora', distribuidora);
+        formData.append('validade', validade);
+        formData.append('descricao', descricao);
+        formData.append('foto', foto);
 
-        const response = await fetch('cadastrar_produto.php', {
-            method: 'POST',
-            body: formData,
-        });
+        try {
+            const response = await fetch('http://localhost/create.php', {
+                method: 'POST',
+                body: formData,
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            alert(data.message); // Mensagem do PHP
-            // Limpar o formulário após o envio
-            setNome('');
-            setPreco('');
-            setDistribuidora('');
-            setValidade('');
-            setDescricao('');
-            setFoto(null);
-            adicionarProduto(); // Atualizar a lista de produtos, se necessário
-        } else {
-            alert('Erro ao cadastrar o produto.');
+            if (response.ok) {
+                alert('Produto cadastrado com sucesso!');
+                setNome('');
+                setPreco('');
+                setDistribuidora('');
+                setValidade('');
+                setDescricao('');
+                setFoto(null);
+            } else {
+                alert('Falha ao cadastrar produto.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar o formulário', error);
         }
     };
 

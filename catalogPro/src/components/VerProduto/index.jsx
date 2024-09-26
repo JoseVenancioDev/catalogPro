@@ -34,29 +34,25 @@ const adicionarProduto = async (novoProduto) => {
 };
 
     useEffect(() => {
-        if (produtos.length > 0) {
-            setProdutosExibidos(prevProdutos => {
-                const produtosAtualizados = prevProdutos.length === 5
-                    ? [...prevProdutos.slice(1), produtos[produtos.length - 1]]
-                    : [...prevProdutos, produtos[produtos.length - 1]];
-
-                return produtosAtualizados;
-            });
-        }
-    }, [produtos]);
+        const fetchProdutos = async () => {
+            try {
+                const response = await fetch('http://localhost/obter_produto.php');
+                const data = await response.json();
+                setProdutos(data);
+            } catch (error) {
+                console.error('Erro ao buscar produtos:', error);
+            }
+        };
+        fetchProdutos();
+    }, []);
 
     return (
-        <div className='produtos-recentes'>
+        <div className="produtos-recentes">
             <h3>Produtos Recentes</h3>
             <div className="lista-recentes">
-                    {(produtosExibidos.map((produto, index) => (
-                        <CardProduto
-                            key={index}
-                            produto={produto}
-
-                        />
-                    ))
-                )}
+                {produtos.map((produto, index) => (
+                    <CardProduto key={index} produto={produto} />
+                ))}
             </div>
         </div>
     );
