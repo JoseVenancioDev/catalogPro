@@ -7,19 +7,7 @@
     width: 100vw;
     margin: 0;
     overflow: hidden;
-    animation: backgroundAnimation 15s ease-in-out infinite;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background-color: #ffffff; /* Fundo branco */
 }
 
 .login-container {
@@ -47,12 +35,10 @@
     color: #2C3E50;
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(90deg, #00bfa5, #2C3E50);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textPulse 1.5s infinite;
+    /* Remover o gradiente e a animação */
+    background: none;
+    -webkit-text-fill-color: #2C3E50;
 }
-
 .login-container label {
     font-size: 2rem;
     font-weight: 500;

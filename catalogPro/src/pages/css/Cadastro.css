@@ -8,8 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: backgroundAnimation 15s ease-in-out infinite;
+    background-color: #ffffff; /* Fundo branco */
 }
+
+
+
 
 @keyframes backgroundAnimation {
     0% { background: #2C3E50; }
@@ -41,10 +44,9 @@
     color: #2C3E50;
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(90deg, #00bfa5, #2C3E50);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textPulse 1.5s infinite;
+    /* Remover o gradiente e animação */
+    background: none;
+    -webkit-text-fill-color: #2C3E50;
 }
 
 .signup-container label {
