@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CardProduto from './CardProduto';
+import CardProduto from '../CardProduto';
 import './VerProduto.css';
 
 export const VerProduto = () => {
