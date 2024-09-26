@@ -1,0 +1,282 @@
+/* Reset básico para remover margens e paddings padrões */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+  box-sizing: border-box;
+}
+
+.allPagInicial {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Layout Flex para garantir que o conteúdo ocupe toda a página */
+.main-content {
+  flex: 1;
+  margin-bottom: 60px;
+}
+
+/* Estilos do Header */
+header {
+  background-color: #00bfa5;
+  text-align: center;
+  width: 100%;
+}
+
+/* Estilos de navegação */
+nav {
+  background-color: #2C3E50;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem; /* Aumenta o tamanho dos links no menu */
+}
+
+/* Estilos da hero (parte inicial) */
+.hero {
+  padding: 60px 0; /* Aumentei o padding da hero */
+  background-color: #00bfa5;
+  color: white;
+}
+
+.hero img.avatar {
+  width: 180px; /* Aumentei o tamanho do avatar */
+  border-radius: 50%;
+}
+
+.hero h1 {
+  margin: 20px 0;
+  font-size: 4rem; /* Aumentei o tamanho do título principal */
+}
+
+/* Seções */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#products {
+  background-color: #f0f0f0;
+}
+
+.products-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  margin: 30px; /* Aumentei o espaçamento entre produtos */
+  width: 200px; /* Aumentei o tamanho dos itens de produto */
+  height: 200px;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Aumentei a sombra para dar mais destaque */
+}
+
+#about {
+  background-color: #00bfa5;
+  color: white;
+}
+
+#about p {
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1.5rem; /* Aumentei o tamanho do texto da seção About */
+}
+
+/* Links gerais */
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Aumentei o tamanho geral dos links */
+}
+
+#h2-produto {
+  color: black;
+  font-size: 2.5rem; /* Aumentei o tamanho do título de produtos */
+}
+
+/* Estilo para o box de botões */
+.buttonBox {
+  background-color: #f0f0f0;
+}
+
+/* Container da navegação */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px; /* Aumentei o padding do container de navegação */
+}
+
+.nav-container .logo {
+  font-size: 3rem; /* Aumentei o tamanho do logo */
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-container ul li {
+  display: inline;
+}
+
+.nav-container a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 15px 25px; /* Aumentei o padding dos links de navegação */
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1.5rem; /* Aumentei o tamanho dos links */
+}
+
+.nav-container ul li a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Botões de cadastro e login */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: #00bfa5;
+  background-color: white;
+  border: 2px solid  #00bfa5;
+  padding: 15px 30px; /* Aumentei o tamanho dos botões */
+  border-radius: 4px;
+  font-size: 1.5rem; /* Aumentei o tamanho do texto dos botões */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-buttons a:hover {
+  background-color: #00bfa5;
+  color: white;
+}
+
+/* Footer */
+footer {
+  background-color: #2C3E50;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer h2 {
+  margin-bottom: 10px;
+  font-size: 2.5rem; /* Aumentei o tamanho do título no footer */
+}
+
+footer p {
+  margin: 10px 0;
+  font-size: 1.5rem; /* Aumentei o tamanho do texto no footer */
+}
+
+footer a {
+  margin: 1rem;
+  color: #00bfa5;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem; /* Aumentei o tamanho dos links no footer */
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .social-media {
+  margin: 1rem;
+}
+
+footer .social-media a {
+  margin: 1rem;
+  font-size: 2rem; /* Aumentei o tamanho dos ícones de mídia social */
+  color: white;
+  transition: color 0.3s;
+}
+
+footer .social-media a:hover {
+  color: #00bfa5;
+}
+
+footer .separator {
+  border-top: 1px solid #00bfa5;
+  margin: 15px 0;
+}
+
+/* Botão estilo link */
+.button-link {
+  display: inline-block;
+  background-color: #00bfa5;
+  color: white;
+  text-decoration: none;
+  padding: 20px 40px; /* Aumentei o tamanho do botão estilo link */
+  text-align: center;
+  font-size: 1.8rem; /* Aumentei o tamanho do texto do botão */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.button-link:hover {
+  background-color: #9ffff2;
+}
+
+/* Ajustando o tamanho geral de todos os textos e elementos */
+body {
+  font-size: 20px; /* Aumentei o tamanho base do texto */
+}
+
+h1 {
+  font-size: 4rem; /* Aumentei o tamanho dos títulos */
+}
+
+h2 {
+  font-size: 3.5rem; /* Aumentei o tamanho dos subtítulos */
+}
+
+h3 {
+  font-size: 2.8rem;
+}
+
+p {
+  font-size: 1.8rem; /* Aumentei o tamanho geral dos parágrafos */
+}
+
+button, a, .button-link {
+  font-size: 1.8rem; /* Aumentei o tamanho dos botões e links */
+}

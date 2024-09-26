@@ -1,14 +1,3 @@
-/* Estilos gerais */
-* {
-    box-sizing: border-box; /* Para evitar problemas com padding e bordas */
-}
-
-/* Reseta margens e padding do body */
-body {
-    margin: 0;
-    padding: 0;
-}
-
 /* Container principal que envolve a barra lateral e o conteúdo */
 .main-container {
     display: flex;
@@ -18,20 +7,21 @@ body {
 
 /* Estilos da barra lateral */
 .sidebar {
-    background-color: #343a40;
-    width: 250px; /* Largura fixa */
+    background-color: #2C3E50; /* Azul escuro */
+    width: 20rem; /* Largura fixa */
     height: 100vh; /* Altura completa da viewport */
     padding: 20px;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 2rem;
+    border-radius: 0 20px 20px 0; /* Arredondamento do lado direito */
     position: fixed; /* Fixado no lado esquerdo */
     left: 0;
     top: 0;
     transition: width 0.3s ease;
     z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Sombra para a barra lateral */
 }
 
 /* Botão de alternância visível em telas pequenas */
@@ -40,11 +30,19 @@ body {
     position: fixed; /* Mantém o botão visível no topo */
     top: 20px;
     right: 20px;
-    background-color: transparent;
+    background-color: #2980b9; /* Azul vibrante */
     border: none;
     color: white;
     font-size: 24px; /* Ajuste conforme necessário */
-    z-index: 1001; /* Garante que fique acima de outros elementos */
+    padding: 10px 15px; /* Padding para o botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do botão */
+    cursor: pointer;
+    transition: background 0.3s ease; /* Transição para hover */
+}
+
+.btn-mobile:hover {
+    background-color: #3498db; /* Azul mais claro ao passar o mouse */
 }
 
 /* Conteúdo da barra lateral */
@@ -58,18 +56,21 @@ body {
 .avatar-container {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center; /* Centraliza o avatar */
 }
 
 .avatar {
     border-radius: 50%;
     width: 150px;
     height: 150px;
+    border: 3px solid #ffffff; /* Borda branca ao redor do avatar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ao redor do avatar */
 }
 
 .username {
     font-size: 1.125rem; /* lg */
     font-weight: bold;
+    margin-top: 10px; /* Espaçamento entre avatar e nome */
 }
 
 /* Divider */
@@ -85,7 +86,14 @@ body {
     align-items: center;
     text-decoration: none;
     color: white;
-    font-size: 1rem; /* Ajuste conforme necessário */
+    font-size: 1.5rem; /* Ajuste conforme necessário */
+    padding: 10px; /* Padding para links */
+    border-radius: 5px; /* Bordas arredondadas para links */
+    transition: background 0.3s ease; /* Transição para hover */
+}
+
+.sidebar-link:hover {
+    background-color: #34495e; /* Cor de fundo ao passar o mouse */
 }
 
 .icon {

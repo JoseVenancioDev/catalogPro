@@ -18,15 +18,22 @@ export const FormProduto = () => {
         formData.append('validade', validade);
         formData.append('descricao', descricao);
         formData.append('foto', foto);
-
+    
         try {
             const response = await fetch('http://localhost/catalogPro/server/create.php', {
                 method: 'POST',
                 body: formData,
             });
-
+    
+            // Adicione isso para depurar a resposta
+            console.log('Response Status:', response.status);
+            const text = await response.text(); // Obter a resposta como texto
+            console.log('Response Text:', text); // Log da resposta
+    
             if (response.ok) {
-                alert('Produto cadastrado com sucesso!');
+                const data = JSON.parse(text); // Tente converter o texto em JSON
+                alert(data.mensagem || 'Produto cadastrado com sucesso!');
+                // Limpar os campos do formulário após o envio bem-sucedido
                 setNome('');
                 setPreco('');
                 setDistribuidora('');
@@ -34,12 +41,15 @@ export const FormProduto = () => {
                 setDescricao('');
                 setFoto(null);
             } else {
-                alert('Falha ao cadastrar produto.');
+                const errorData = JSON.parse(text); // Certifique-se de lidar com a resposta de erro
+                alert(errorData.erro || 'Falha ao cadastrar produto.');
             }
         } catch (error) {
-            console.error('Erro ao enviar o formulário', error);
+            console.error('Erro ao enviar o formulário:', error);
+            alert('Erro ao enviar o formulário, tente novamente.');
         }
     };
+    
 
     return (
         <div className="form-section">
@@ -47,7 +57,7 @@ export const FormProduto = () => {
             <form onSubmit={handleSubmit}>
                 <input 
                     type="file" 
-                    name="fotoProduto" 
+                    name="foto" 
                     required 
                     onChange={(e) => setFoto(e.target.files[0])}
                 /><br />

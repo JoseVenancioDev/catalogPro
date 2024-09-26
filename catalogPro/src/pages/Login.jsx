@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Login.css';
-
+import './css/Login.css';
 
 export function Login() {
     const [email, setEmail] = useState('');
@@ -60,3 +59,4 @@ export function Login() {
         </div>
     );
 }
+
