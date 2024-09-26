@@ -20,7 +20,7 @@ export const FormProduto = () => {
         formData.append('foto', foto);
 
         try {
-            const response = await fetch('http://localhost/create.php', {
+            const response = await fetch('http://localhost/catalogPro/server/create.php', {
                 method: 'POST',
                 body: formData,
             });
