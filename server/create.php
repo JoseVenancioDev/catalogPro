@@ -1,5 +1,8 @@
 <?php
 session_start();
+header("Access-Control-Allow-Origin: *"); // Permite qualquer origem
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // Permite apenas certos métodos HTTP
+header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Define os headers permitidos
 if (!isset($_SESSION['email_usuario'])) {
     header("Location: login.php");
     exit();
