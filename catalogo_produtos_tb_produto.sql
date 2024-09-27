@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `tb_produto`;
 CREATE TABLE `tb_produto` (
   `id_produto` int NOT NULL AUTO_INCREMENT,
   `nome_produto` varchar(45) NOT NULL,
+  `distribuidora` varchar(255) NOT NULL,
   `descricao_produto` text,
   `preco_produto` decimal(10,2) NOT NULL,
   `data_validade` date NOT NULL,
