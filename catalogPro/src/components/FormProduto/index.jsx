@@ -8,9 +8,11 @@ export const FormProduto = ({ adicionarProduto }) => {
     const [validade, setValidade] = useState('');
     const [descricao, setDescricao] = useState('');
     const [foto, setFoto] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const formData = new FormData();
         formData.append('nome', nome);
         formData.append('preco', preco);
@@ -30,10 +32,10 @@ export const FormProduto = ({ adicionarProduto }) => {
                 const data = JSON.parse(text);
                 alert(data.mensagem || 'Produto cadastrado com sucesso!');
                 
-                // Chamar a função de adicionarProduto
+                // Call the adicionarProduto function
                 adicionarProduto({ nome, preco, distribuidora, validade, descricao, foto });
                 
-                // Limpar os campos do formulário
+                // Clear form fields
                 setNome('');
                 setPreco('');
                 setDistribuidora('');
@@ -47,6 +49,8 @@ export const FormProduto = ({ adicionarProduto }) => {
         } catch (error) {
             console.error('Erro ao enviar o formulário:', error);
             alert('Erro ao enviar o formulário, tente novamente.');
+        } finally {
+            setLoading(false); // Reset loading state
         }
     };
 
@@ -56,7 +60,7 @@ export const FormProduto = ({ adicionarProduto }) => {
             <form onSubmit={handleSubmit}>
                 <input 
                     type="file" 
-                    name="foto" 
+                    name="foto"
                     required 
                     onChange={(e) => setFoto(e.target.files[0])}
                 /><br />
@@ -99,7 +103,9 @@ export const FormProduto = ({ adicionarProduto }) => {
                     onChange={(e) => setDescricao(e.target.value)}
                     required 
                 /><br />
-                <button type="submit">Adicionar Produto</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Adicionando...' : 'Adicionar Produto'}
+                </button>
             </form>
         </div>
     );

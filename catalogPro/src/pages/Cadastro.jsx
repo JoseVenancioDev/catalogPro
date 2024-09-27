@@ -13,7 +13,6 @@ export function Cadastro() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Formulário enviado');
 
         if (password !== confirmPassword) {
             setError('As senhas não conferem.');
@@ -33,12 +32,10 @@ export function Cadastro() {
                 }
             });
 
-            console.log('Resposta do servidor:', response.data);
-
             if (response.data.success) {
                 setSuccess('Cadastro realizado com sucesso!');
                 setError('');
-                // Limpar campos após o sucesso
+                // Clear fields after success
                 setFullname('');
                 setEmail('');
                 setUsername('');
@@ -50,7 +47,11 @@ export function Cadastro() {
             }
         } catch (err) {
             console.error('Erro ao enviar o formulário:', err);
-            setError('Ocorreu um erro ao enviar o formulário.');
+            if (err.response) {
+                setError(err.response.data.message || 'Ocorreu um erro ao enviar o formulário.');
+            } else {
+                setError('Erro de rede. Tente novamente.');
+            }
             setSuccess('');
         }
     };

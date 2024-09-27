@@ -6,12 +6,12 @@ export const Relatorio = () => {
     const [produtos, setProdutos] = useState([]);
     const [editIndex, setEditIndex] = useState(null);
     const [formValues, setFormValues] = useState({
-        id_produto: '', // Inclui o ID do produto
+        id_produto: '',
         nome: '',
         preco: '',
         descricao: '',
         validade: '',
-        foto_produto: '',
+        foto_produto: null,
         distribuidora: '',
     });
     const [error, setError] = useState(null);
@@ -38,45 +38,59 @@ export const Relatorio = () => {
         const produtoSelecionado = produtos[index];
         setEditIndex(index);
         setFormValues({
-            id_produto: produtoSelecionado.id_produto, // Define o ID do produto
+            id_produto: produtoSelecionado.id_produto,
             nome: produtoSelecionado.nome_produto || '',
             preco: produtoSelecionado.preco_produto || '',
             distribuidora: produtoSelecionado.distribuidora || '',
             validade: produtoSelecionado.data_validade || '',
             descricao: produtoSelecionado.descricao_produto || '',
-            foto_produto: produtoSelecionado.foto_produto || '',
+            foto_produto: null,
         });
     };
 
     const salvarEdicao = async () => {
+        const formData = new FormData();
+        formData.append('id_produto', formValues.id_produto);
+        formData.append('nome', formValues.nome);
+        formData.append('preco', formValues.preco);
+        formData.append('descricao', formValues.descricao);
+        formData.append('validade', formValues.validade);
+        formData.append('distribuidora', formValues.distribuidora);
+
+        if (formValues.foto_produto) {
+            formData.append('foto_produto', formValues.foto_produto);
+        }
+
         try {
             const response = await fetch('http://localhost/catalogPro/server/updateProduto.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formValues), // Envia os valores do formulário
+                body: formData,
             });
 
             if (!response.ok) {
-                throw new Error('Erro ao salvar produto');
+                const errorMessage = await response.text(); // Leia como texto para capturar erros
+                throw new Error(`Erro ao salvar produto: ${errorMessage}`);
             }
 
             const result = await response.json();
             console.log(result); // Log para verificar a resposta do servidor
 
-            // Atualiza a lista de produtos após a edição
-            setProdutos(produtos.map((p, index) => (index === editIndex ? { ...p, ...formValues } : p)));
-            setEditIndex(null);
-            setFormValues({ // Limpa o formulário após salvar
-                id_produto: '',
-                nome: '',
-                preco: '',
-                descricao: '',
-                validade: '',
-                foto_produto: '',
-                distribuidora: '',
-            });
+            if (result.success) {
+                // Atualiza a lista de produtos após a edição
+                setProdutos(produtos.map((p, index) => (index === editIndex ? { ...p, ...formValues } : p)));
+                setEditIndex(null);
+                setFormValues({
+                    id_produto: '',
+                    nome: '',
+                    preco: '',
+                    descricao: '',
+                    validade: '',
+                    foto_produto: null,
+                    distribuidora: '',
+                });
+            } else {
+                throw new Error(result.message);
+            }
         } catch (error) {
             console.error('Erro ao salvar produto:', error);
             setError(`Erro ao salvar o produto: ${error.message}`);
@@ -86,12 +100,12 @@ export const Relatorio = () => {
     const cancelarEdicao = () => {
         setEditIndex(null);
         setFormValues({
-            id_produto: '', // Reseta o ID
+            id_produto: '',
             nome: '',
             preco: '',
             descricao: '',
             validade: '',
-            foto_produto: '',
+            foto_produto: null,
             distribuidora: '',
         });
     };
@@ -108,7 +122,7 @@ export const Relatorio = () => {
         const file = e.target.files[0];
         setFormValues({
             ...formValues,
-            foto_produto: file ? URL.createObjectURL(file) : '', // Use a URL da imagem
+            foto_produto: file ? file : null,
         });
     };
 
@@ -178,7 +192,7 @@ export const Relatorio = () => {
                                             </td>
                                             <td>
                                                 <input type="file" onChange={handleImageChange} />
-                                                {formValues.foto_produto && <img src={formValues.foto_produto} alt="Produto" width="50" />}
+                                                {formValues.foto_produto && <img src={URL.createObjectURL(formValues.foto_produto)} alt="Produto" width="50" />}
                                             </td>
                                             <td>
                                                 <button onClick={salvarEdicao}>Salvar</button>
@@ -193,7 +207,7 @@ export const Relatorio = () => {
                                             <td>{produto.data_validade}</td>
                                             <td>{produto.descricao_produto}</td>
                                             <td>
-                                                {produto.foto_produto && <img src={produto.foto_produto} alt="Produto" width="50" />}
+                                                {produto.foto_produto && <img src={`http://localhost/catalogPro/server/${produto.foto_produto}`} alt="Produto" width="50" />}
                                             </td>
                                             <td>
                                                 <button onClick={() => iniciarEdicao(index)}>Editar</button>

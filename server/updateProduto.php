@@ -1,8 +1,14 @@
 <?php
+// Ativar exibição de erros para debug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Permitir a origem http://localhost:3000
 header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Content-Type: application/json");
 
 // Responder a requisições de preflight (OPTIONS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -10,69 +16,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// Código PHP para lidar com a requisição POST
-include './dbcon.php'; // Conexão com o banco de dados
+// Conectar ao banco de dados
+include 'dbcon.php'; 
 
-// Lê os dados recebidos
-$data = json_decode(file_get_contents("php://input"), true);
+// Lê os dados enviados via POST
+$id = $_POST['id_produto'] ?? null;
+$nome = $_POST['nome_produto'] ?? null;
+$preco = $_POST['preco_produto'] ?? null;
+$distribuidora = $_POST['distribuidora'] ?? null;
+$validade = $_POST['data_validade'] ?? null;
+$descricao = $_POST['descricao_produto'] ?? null;
+$foto = null;
 
-if (isset($data['id_produto'])) {
-    $id = $data['id_produto']; // Utilize o ID correto
-
-    // Inicializa a consulta
-    $query = "UPDATE tb_produto SET ";
-    $params = [];
-
-    // Adiciona campos que estão presentes no request
-    if (isset($data['nome'])) {
-        $query .= "nome_produto = :nome, ";
-        $params[':nome'] = $data['nome'];
+// Verifica se a foto foi enviada
+if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] === UPLOAD_ERR_OK) {
+    $foto = 'img/' . basename($_FILES['foto_produto']['name']);
+    $target_dir = 'img/';
+    
+    // Mover o arquivo para o diretório "img/"
+    if (!move_uploaded_file($_FILES['foto_produto']['tmp_name'], $target_dir . basename($_FILES['foto_produto']['name']))) {
+        echo json_encode(['success' => false, 'message' => 'Erro ao mover o arquivo de imagem']);
+        exit;
     }
-    if (isset($data['preco'])) {
-        $query .= "preco_produto = :preco, ";
-        $params[':preco'] = $data['preco'];
-    }
-    if (isset($data['distribuidora'])) {
-        $query .= "distribuidora = :distribuidora, ";
-        $params[':distribuidora'] = $data['distribuidora'];
-    }
-    if (isset($data['validade'])) {
-        $query .= "data_validade = :validade, ";
-        $params[':validade'] = $data['validade'];
-    }
-    if (isset($data['descricao'])) {
-        $query .= "descricao_produto = :descricao, ";
-        $params[':descricao'] = $data['descricao'];
-    }
-    if (isset($data['foto_produto'])) {
-        $query .= "foto_produto = :foto_produto, ";
-        $params[':foto_produto'] = $data['foto_produto'];
-    }
+}
 
-    // Remove a última vírgula e adiciona a condição WHERE
-    $query = rtrim($query, ', ') . " WHERE id_produto = :id";
-    $params[':id'] = $id;
+// Monta a query SQL para atualizar o produto
+$query = "UPDATE tb_produto SET nome_produto = ?, preco_produto = ?, distribuidora = ?, data_validade = ?, descricao_produto = ?";
+$params = [$nome, $preco, $distribuidora, $validade, $descricao];
 
-    // Log da consulta e parâmetros
-    error_log("Consulta SQL: " . $query);
-    error_log("Parâmetros: " . print_r($params, true));
+if ($foto) {
+    $query .= ", foto_produto = ?";
+    $params[] = $foto;
+}
 
-    // Prepara a consulta
-    $stmt = $pdo->prepare($query);
+// Verifica se o ID do produto foi fornecido
+if ($id) {
+    $query .= " WHERE id_produto = ?";
+    $params[] = $id;
 
-    // Executa a consulta
-    try {
-        if ($stmt->execute($params)) {
-            echo json_encode(["message" => "Produto atualizado com sucesso."]);
-        } else {
-            error_log(print_r($stmt->errorInfo(), true)); // Log de erro se a execução falhar
-            echo json_encode(["message" => "Erro ao atualizar produto."]);
-        }
-    } catch (PDOException $e) {
-        error_log("Erro: " . $e->getMessage());
-        echo json_encode(["message" => "Erro ao atualizar produto: " . $e->getMessage()]);
+    // Prepara e executa a query
+    $stmt = $con->prepare($query);
+    $result = $stmt->execute($params);
+
+    if ($result) {
+        echo json_encode(['success' => true, 'message' => 'Produto atualizado com sucesso']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Erro ao atualizar o produto']);
     }
 } else {
-    echo json_encode(["message" => "ID do produto não fornecido."]);
+    echo json_encode(['success' => false, 'message' => 'ID do produto não fornecido']);
 }
+
+// Certifique-se de encerrar o script para evitar saídas não desejadas
+exit;
 ?>
