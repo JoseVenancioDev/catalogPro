@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormProduto.css';
 
-export const FormProduto = () => {
+export const FormProduto = ({ adicionarProduto }) => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [distribuidora, setDistribuidora] = useState('');
@@ -18,22 +18,22 @@ export const FormProduto = () => {
         formData.append('validade', validade);
         formData.append('descricao', descricao);
         formData.append('foto', foto);
-    
+
         try {
             const response = await fetch('http://localhost/catalogPro/server/create.php', {
                 method: 'POST',
                 body: formData,
             });
-    
-            // Adicione isso para depurar a resposta
-            console.log('Response Status:', response.status);
-            const text = await response.text(); // Obter a resposta como texto
-            console.log('Response Text:', text); // Log da resposta
-    
+
+            const text = await response.text();
             if (response.ok) {
-                const data = JSON.parse(text); // Tente converter o texto em JSON
+                const data = JSON.parse(text);
                 alert(data.mensagem || 'Produto cadastrado com sucesso!');
-                // Limpar os campos do formulário após o envio bem-sucedido
+                
+                // Chamar a função de adicionarProduto
+                adicionarProduto({ nome, preco, distribuidora, validade, descricao, foto });
+                
+                // Limpar os campos do formulário
                 setNome('');
                 setPreco('');
                 setDistribuidora('');
@@ -41,7 +41,7 @@ export const FormProduto = () => {
                 setDescricao('');
                 setFoto(null);
             } else {
-                const errorData = JSON.parse(text); // Certifique-se de lidar com a resposta de erro
+                const errorData = JSON.parse(text);
                 alert(errorData.erro || 'Falha ao cadastrar produto.');
             }
         } catch (error) {
@@ -49,7 +49,6 @@ export const FormProduto = () => {
             alert('Erro ao enviar o formulário, tente novamente.');
         }
     };
-    
 
     return (
         <div className="form-section">
@@ -89,7 +88,6 @@ export const FormProduto = () => {
                 <input 
                     type="date" 
                     name="validade" 
-                    placeholder="Validade" 
                     value={validade}
                     onChange={(e) => setValidade(e.target.value)}
                     required 

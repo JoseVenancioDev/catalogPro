@@ -25,7 +25,6 @@ export function Cadastro() {
         formData.append('email', email);
         formData.append('username', username);
         formData.append('password', password);
-        formData.append('confirm_password', confirmPassword);
 
         try {
             const response = await axios.post('http://localhost/catalogPro/server/cadastro.php', formData, {
@@ -39,6 +38,12 @@ export function Cadastro() {
             if (response.data.success) {
                 setSuccess('Cadastro realizado com sucesso!');
                 setError('');
+                // Limpar campos após o sucesso
+                setFullname('');
+                setEmail('');
+                setUsername('');
+                setPassword('');
+                setConfirmPassword('');
             } else {
                 setError(response.data.message);
                 setSuccess('');
@@ -52,68 +57,64 @@ export function Cadastro() {
 
     return (
         <div className="allCadastro">
+            <div className="signup-container">
+                <h2>Cadastro</h2>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="fullname">Nome Completo:</label>
+                    <input 
+                        type="text" 
+                        id="fullname" 
+                        name="fullname" 
+                        value={fullname}
+                        onChange={(e) => setFullname(e.target.value)}
+                    />
 
-        
-        <div className="signup-container">
-            <h2>Cadastro</h2>
-            <form onSubmit={handleSubmit}>
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required 
+                    />
 
-                <label htmlFor="fullname">Nome Completo:</label>
-                <input 
-                    type="text" 
-                    id="fullname" 
-                    name="fullname" 
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
-                    required 
-                />
+                    <label htmlFor="username">Usuário:</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required 
+                    />
 
-                <label htmlFor="email">Email:</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required 
-                />
+                    <label htmlFor="password">Senha:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required 
+                    />
 
-                <label htmlFor="username">Usuário:</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required 
-                />
+                    <label htmlFor="confirm_password">Confirme a Senha:</label>
+                    <input 
+                        type="password" 
+                        id="confirm_password" 
+                        name="confirm_password" 
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required 
+                    />
 
-                <label htmlFor="password">Senha:</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required 
-                />
-
-                <label htmlFor="confirm_password">Confirme a Senha:</label>
-                <input 
-                    type="password" 
-                    id="confirm_password" 
-                    name="confirm_password" 
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required 
-                />
-
-                <button type="submit">Cadastrar</button>
-            </form>
-            {error && <p className="error-message">{error}</p>}
-            {success && <p className="success-message">{success}</p>}
-            <a href="/login" className="login-link">Já tem uma conta? Faça login</a>
-        </div>
+                    <button type="submit">Cadastrar</button>
+                </form>
+                {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
+                <a href="/login" className="login-link">Já tem uma conta? Faça login</a>
+            </div>
         </div>
     );
 }
