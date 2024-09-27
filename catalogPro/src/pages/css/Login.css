@@ -26,7 +26,7 @@
 .login-container:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    background-color: #f0f9f4;
+    background-color: #ffffff;
 }
 
 .login-container h2 {
@@ -70,21 +70,22 @@
 .login-container button {
     width: 100%;
     padding: 14px;
-    background-color: #00bfa5;
+    background: linear-gradient(90deg, #00bfa5, #2fddc6);
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     color: #ffffff;
-    font-weight: 600;
-    font-size: 1.1em;
+    font-weight: bold;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto;
 }
 
 .login-container button:hover {
-    background-color: #009c8f;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #00bfa5, #009c8f);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .login-container .register-link {

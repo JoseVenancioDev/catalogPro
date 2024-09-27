@@ -31,7 +31,7 @@
 .lista-recentes h4 {
     margin: 10px 0;
     font-size: 1.2rem;
-    color: #009c8f; /* Cor vibrante para o título */
+    color: #00bfa5; /* Cor vibrante para o título */
 }
 
 .produtos-recentes {
@@ -40,7 +40,7 @@
     width: 100%;
     border-radius: 20px;
     color: #ffffff;
-    background-color: #009c8f; /* Cor vibrante */
+    background-color: #00bfa5; /* Cor vibrante */
     text-align: center; /* Centraliza o texto */
 }
 
