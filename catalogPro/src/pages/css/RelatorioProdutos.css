@@ -1,18 +1,17 @@
 .relatorio {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-left: 30rem;
-
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Para empilhar em telas pequenas */
 }
 
 .relatorio-produtos {
     max-width: 100rem;
+    width: 90%; /* Para garantir que ocupe 90% em telas menores */
     padding: 1rem;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 191, 165, 0.3);
-    
+    box-shadow: 0 6px 12px rgba(0, 22, 19, 0.3);
 }
 
 .relatorio-produtos h3 {
@@ -44,7 +43,7 @@
     background-color: #2C3E50;
     color: #ffffff;
     font-weight: bold;
-    text-transform: uppercase; /* Letras maiúsculas para cabeçalhos */
+    text-transform: uppercase;
 }
 
 .relatorio-produtos td img {
@@ -65,12 +64,12 @@ button, .edit {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
-    font-size: 1.5rem;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    margin: 1rem;
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 .button:hover,
@@ -80,7 +79,6 @@ button, .edit {
     box-shadow: 0 4px 8px rgba(0, 191, 165, 0.3);
 }
 
-/* Adiciona uma borda ao redor dos botões ao focar */
 .button:focus,
 .edit:focus {
     outline: none;
@@ -97,17 +95,43 @@ button, .edit {
     }
 
     .relatorio-produtos h3 {
-        font-size: 1.1rem;
+        font-size: 1.5rem; /* Ajustar o tamanho da fonte */
         padding: 15px;
     }
 
+    .relatorio-produtos th,
     .relatorio-produtos td {
-        padding: 10px;
+        font-size: 1.2rem; /* Ajustar o tamanho da fonte da tabela */
+        padding: 10px; /* Reduzir padding em cells */
     }
 
-    .button,
+    button,
     .edit {
         padding: 10px 20px;
-        font-size: 14px;
+        font-size: 1.2rem; /* Ajustar tamanho dos botões */
+    }
+
+    .relatorio-produtos td img {
+        max-width: 100px; /* Diminuir tamanho da imagem em telas pequenas */
+    }
+}
+
+@media (max-width: 480px) {
+    .relatorio-produtos {
+        width: 100%; /* Ocupa 100% em telas pequenas */
+    }
+
+    .relatorio-produtos h3 {
+        font-size: 1.2rem; /* Ajustar ainda mais o tamanho da fonte */
+    }
+
+    .relatorio-produtos th,
+    .relatorio-produtos td {
+        font-size: 1rem; /* Tamanho ainda menor para a tabela */
+    }
+
+    button,
+    .edit {
+        font-size: 1rem; /* Ajustar tamanho dos botões */
     }
 }

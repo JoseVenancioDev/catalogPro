@@ -11,9 +11,6 @@
     background-color: #ffffff; /* Fundo branco */
 }
 
-
-
-
 @keyframes backgroundAnimation {
     0% { background: #2C3E50; }
     25% { background: #1ABC9C; }
@@ -202,4 +199,31 @@
     transform: translate(-50%, -50%);
     opacity: 0.2;
     animation: float 8s ease-in-out infinite;
+}
+@media (max-width: 768px) {
+    .signup-container {
+        width: 90%; /* Adjust width for smaller screens */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .signup-container h2 {
+        font-size: 2.5rem; /* Smaller font size */
+    }
+
+    .signup-container label,
+    .signup-container input,
+    .signup-container button {
+        font-size: 1.5rem; /* Adjust font sizes */
+    }
+    
+    .signup-container input[type="text"],
+    .signup-container input[type="email"],
+    .signup-container input[type="password"],
+    .signup-container button {
+        padding: 10px; /* Reduce padding for inputs and buttons */
+    }
+    
+    .signup-container .login-link {
+        font-size: 1.2rem; /* Smaller link size */
+    }
 }
