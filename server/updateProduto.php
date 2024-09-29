@@ -40,6 +40,7 @@ if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] === UPLOA
     }
 }
 
+
 // Monta a query SQL para atualizar o produto
 $query = "UPDATE tb_produto SET nome_produto = ?, preco_produto = ?, distribuidora = ?, data_validade = ?, descricao_produto = ?";
 $params = [$nome, $preco, $distribuidora, $validade, $descricao];
@@ -55,11 +56,12 @@ if ($id) {
     $params[] = $id;
 
     // Prepara e executa a query
-    $stmt = $con->prepare($query);
+    $stmt = $pdo->prepare($query);
     $result = $stmt->execute($params);
 
     if ($result) {
         echo json_encode(['success' => true, 'message' => 'Produto atualizado com sucesso']);
+        
     } else {
         echo json_encode(['success' => false, 'message' => 'Erro ao atualizar o produto']);
     }

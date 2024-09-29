@@ -51,10 +51,10 @@ export const Relatorio = () => {
     const salvarEdicao = async () => {
         const formData = new FormData();
         formData.append('id_produto', formValues.id_produto);
-        formData.append('nome', formValues.nome);
-        formData.append('preco', formValues.preco);
-        formData.append('descricao', formValues.descricao);
-        formData.append('validade', formValues.validade);
+        formData.append('nome_produto', formValues.nome);
+        formData.append('preco_produto', formValues.preco);
+        formData.append('descricao_produto', formValues.descricao);
+        formData.append('data_validade', formValues.validade);
         formData.append('distribuidora', formValues.distribuidora);
 
         if (formValues.foto_produto) {
@@ -67,15 +67,17 @@ export const Relatorio = () => {
                 body: formData,
             });
 
-            if (!response.ok) {
-                const errorMessage = await response.text(); // Leia como texto para capturar erros
-                throw new Error(`Erro ao salvar produto: ${errorMessage}`);
-            }
+           const responseText = await response.text(); // Ler a resposta como texto
+        console.log('Resposta do servidor:', responseText); // Exibir a resposta no console
 
-            const result = await response.json();
-            console.log(result); // Log para verificar a resposta do servidor
+        if (!response.ok) {
+            throw new Error(`Erro ao salvar produto: ${responseText}`);
+        }
+
+        const result = JSON.parse(responseText); // Agora tente converter para JSON
 
             if (result.success) {
+                window.location.reload();
                 // Atualiza a lista de produtos após a edição
                 setProdutos(produtos.map((p, index) => (index === editIndex ? { ...p, ...formValues } : p)));
                 setEditIndex(null);
