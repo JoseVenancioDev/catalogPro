@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/Cadastro.css';
 
@@ -10,12 +10,15 @@ export function Cadastro() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (password !== confirmPassword) {
+        
+        if (password.trim() !== confirmPassword.trim()) {
+            console.log('As senhas não conferem.');
             setError('As senhas não conferem.');
+            setSuccess('');
             return;
         }
 
@@ -25,6 +28,8 @@ export function Cadastro() {
         formData.append('username', username);
         formData.append('password', password);
 
+        console.log('FormData:', Array.from(formData.entries())); // Debug: Verifique os dados
+
         try {
             const response = await axios.post('http://localhost/catalogPro/server/cadastro.php', formData, {
                 headers: {
@@ -32,19 +37,26 @@ export function Cadastro() {
                 }
             });
 
+            // Corrigido a condição de sucesso
             if (response.data.success) {
                 setSuccess('Cadastro realizado com sucesso!');
                 setError('');
-                // Clear fields after success
+                // Limpar campos após sucesso
                 setFullname('');
                 setEmail('');
                 setUsername('');
                 setPassword('');
                 setConfirmPassword('');
+
+                // Redireciona após 5 segundos
+                setTimeout(() => {
+                    setRedirect(true);
+                }, 5000);
             } else {
                 setError(response.data.message);
                 setSuccess('');
             }
+            
         } catch (err) {
             console.error('Erro ao enviar o formulário:', err);
             if (err.response) {
@@ -55,6 +67,12 @@ export function Cadastro() {
             setSuccess('');
         }
     };
+
+    useEffect(() => {
+        if (redirect) {
+            window.location.href = '/login'; // Redireciona para a página de login
+        }
+    }, [redirect]);
 
     return (
         <div className="allCadastro">
@@ -104,7 +122,7 @@ export function Cadastro() {
                     <input 
                         type="password" 
                         id="confirm_password" 
-                        name="confirm_password" 
+                        name="confirmPassword" 
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required 

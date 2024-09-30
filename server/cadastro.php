@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? null;
     $username = $_POST['username'] ?? null;
     $password = trim($_POST['password'] ?? '');
-    $confirmPassword = trim($_POST['confirm_password'] ?? '');
+    $confirmPassword = trim($_POST['confirmPassword'] ?? '');
 
     // Log incoming data for debugging
-    error_log("Fullname: $fullname, Email: $email, Username: $username, Password: $password, Confirm Password: $confirmPassword");
+    error_log("Fullname: $fullname, Email: $email, Username: $username, password: $password, ConfirmPassword: $confirmPassword");
 
     if (empty($fullname) || empty($email) || empty($username) || empty($password)) {
         echo json_encode(['success' => false, 'message' => 'Todos os campos são obrigatórios.']);
@@ -24,13 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(['success' => false, 'message' => 'Email inválido.']);
-        exit;
-    }
-
-    // Check if passwords match
-    if ($password !== $confirmPassword) {
-        error_log("Passwords do not match. Password: $password, Confirm Password: $confirmPassword");
-        echo json_encode(['success' => false, 'message' => 'As senhas não conferem.']);
         exit;
     }
 

@@ -44,7 +44,7 @@ export const Relatorio = () => {
             distribuidora: produtoSelecionado.distribuidora || '',
             validade: produtoSelecionado.data_validade || '',
             descricao: produtoSelecionado.descricao_produto || '',
-            foto_produto: null,
+            foto_produto: null, // Mantenha a foto atual
         });
     };
 
@@ -67,19 +67,23 @@ export const Relatorio = () => {
                 body: formData,
             });
 
-           const responseText = await response.text(); // Ler a resposta como texto
-        console.log('Resposta do servidor:', responseText); // Exibir a resposta no console
+            const responseText = await response.text(); // Ler a resposta como texto
+            console.log('Resposta do servidor:', responseText); // Exibir a resposta no console
 
-        if (!response.ok) {
-            throw new Error(`Erro ao salvar produto: ${responseText}`);
-        }
+            if (!response.ok) {
+                throw new Error(`Erro ao salvar produto: ${responseText}`);
+            }
 
-        const result = JSON.parse(responseText); // Agora tente converter para JSON
+            const result = JSON.parse(responseText); // Tente converter para JSON
 
             if (result.success) {
-                window.location.reload();
-                // Atualiza a lista de produtos após a edição
-                setProdutos(produtos.map((p, index) => (index === editIndex ? { ...p, ...formValues } : p)));
+                const updatedProduto = {
+                    ...produtos[editIndex],
+                    ...formValues,
+                    foto_produto: formValues.foto_produto ? URL.createObjectURL(formValues.foto_produto) : produtos[editIndex].foto_produto // Mantenha a foto atual se nenhuma nova foto for selecionada
+                };
+
+                setProdutos(produtos.map((p, index) => (index === editIndex ? updatedProduto : p)));
                 setEditIndex(null);
                 setFormValues({
                     id_produto: '',
@@ -195,6 +199,7 @@ export const Relatorio = () => {
                                             <td>
                                                 <input type="file" onChange={handleImageChange} />
                                                 {formValues.foto_produto && <img src={URL.createObjectURL(formValues.foto_produto)} alt="Produto" width="50" />}
+                                                {!formValues.foto_produto && produto.foto_produto && <img src={produto.foto_produto} alt="Produto Atual" width="50" />} {/* Exibe a imagem atual se não houver nova seleção */}
                                             </td>
                                             <td>
                                                 <button onClick={salvarEdicao}>Salvar</button>
@@ -209,7 +214,7 @@ export const Relatorio = () => {
                                             <td>{produto.data_validade}</td>
                                             <td>{produto.descricao_produto}</td>
                                             <td>
-                                                {produto.foto_produto && <img src={`http://localhost/catalogPro/server/${produto.foto_produto}`} alt="Produto" width="50" />}
+                                                {produto.foto_produto && <img src={produto.foto_produto} alt="Produto" width="500" />}
                                             </td>
                                             <td>
                                                 <button onClick={() => iniciarEdicao(index)}>Editar</button>

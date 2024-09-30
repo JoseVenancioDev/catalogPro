@@ -11,16 +11,20 @@ try {
     die("Conexão falhou: " . $e->getMessage());
 }
 
+// Use PDO para executar a consulta
 $sql = "SELECT * FROM tb_produto";
-$result = $conn->query($sql);
+$result = $pdo->query($sql);
 $produtos = [];
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+if ($result->rowCount() > 0) {
+    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        // Adiciona a URL da imagem ao array de produtos
+        $row['foto'] = "http://localhost/catalogPro/server/img/" . $row['foto_produto']; // Ajuste o caminho se necessário
         $produtos[] = $row;
     }
 }
 
+// Retorna os produtos como JSON
+header('Content-Type: application/json');
 echo json_encode($produtos);
-$conn->close();
 ?>
