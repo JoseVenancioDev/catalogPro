@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $distribuidora = $_POST['distribuidora'] ?? null;
     $validade = $_POST['validade'] ?? null;
     $descricao = $_POST['descricao'] ?? null;
+    $foto = $_POST['foto'] ?? null;
 
     // Inicializa a consulta
     $query = "INSERT INTO tb_produto (nome_produto, preco_produto, distribuidora, data_validade, descricao_produto";
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':descricao' => $descricao
         ];
     } else {
-        $query .= ") VALUES (:nome, :preco, :distribuidora, :validade, :descricao)";
+        $query .= " VALUES (:nome, :preco, :distribuidora, :validade, :descricao)";
         $params = [
             ':nome' => $nome,
             ':preco' => $preco,
