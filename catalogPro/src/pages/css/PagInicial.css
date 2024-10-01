@@ -11,6 +11,8 @@ html, body {
 .allPagInicial {
   height: 100vh;
   width: 100vw;
+  display: flex; /* Adicionado para que o conteúdo centralize corretamente */
+  flex-direction: column; /* Para que o conteúdo ocupe toda a altura */
 }
 
 /* Layout Flex para garantir que o conteúdo ocupe toda a página */
@@ -180,11 +182,13 @@ a {
   border-radius: 4px;
   font-size: 1.5rem; /* Aumentei o tamanho do texto dos botões */
   transition: background-color 0.3s, color 0.3s;
+  margin: auto;
 }
 
 .nav-buttons a:hover {
   background-color: #00bfa5;
   color: white;
+  margin: auto;
 }
 
 /* Footer */
@@ -196,11 +200,14 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+  align-items: center;
+  margin: auto;
 }
 
 footer h2 {
   margin-bottom: 10px;
   font-size: 2.5rem; /* Aumentei o tamanho do título no footer */
+  text-align: center;
 }
 
 footer p {
@@ -252,6 +259,7 @@ footer .separator {
   border-radius: 4px;
   transition: background-color 0.3s;
 }
+
 .button-link:hover {
   background-color: #9ffff2;
 }
@@ -279,4 +287,75 @@ p {
 
 button, a, .button-link {
   font-size: 1.8rem; /* Aumentei o tamanho dos botões e links */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column; /* Empilha os itens da navegação em telas menores */
+    align-items: center;
+  }
+
+  .nav-container .logo {
+    font-size: 2.5rem; /* Reduzir tamanho do logo */
+  }
+
+  .nav-container ul {
+    flex-direction: column; /* Alinha os links verticalmente */
+    gap: 10px;
+  }
+
+  .nav-container a {
+    font-size: 1.2rem; /* Reduzir tamanho dos links */
+    padding: 10px 20px; /* Reduzir padding dos links */
+  }
+
+  .hero h1 {
+    font-size: 2.5rem; /* Reduzir tamanho do título na hero */
+  }
+
+  section {
+    padding: 30px 10px; /* Reduzir padding das seções */
+  }
+
+  .product-item {
+    width: 100%; /* Largura total em telas menores */
+    max-width: 300px; /* Limitar a largura máxima */
+  }
+
+  footer h2 {
+    font-size: 2rem; /* Reduzir tamanho do título no footer */
+  }
+
+  footer p {
+    font-size: 1.2rem; /* Reduzir tamanho do texto no footer */
+  }
+
+  .button-link {
+    padding: 10px 20px; /* Reduzir padding do botão estilo link */
+    font-size: 1.5rem; /* Reduzir tamanho do texto do botão */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem; /* Reduzir ainda mais o tamanho do título */
+  }
+
+  h2 {
+    font-size: 1.8rem; /* Reduzir ainda mais o tamanho do subtítulo */
+  }
+
+  p {
+    font-size: 1.5rem; /* Reduzir ainda mais o tamanho do texto */
+  }
+
+  .nav-buttons a {
+    font-size: 1.2rem; /* Reduzir tamanho dos botões */
+    padding: 10px 15px; /* Reduzir padding dos botões */
+  }
+
+  .hero img.avatar {
+    width: 150px; /* Reduzir tamanho do avatar */
+  }
 }

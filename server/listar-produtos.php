@@ -19,7 +19,7 @@ $produtos = [];
 if ($result->rowCount() > 0) {
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         // Adiciona a URL da imagem ao array de produtos
-        $row['foto'] = "http://localhost/catalogPro/server/img/" . $row['foto_produto']; // Ajuste o caminho se necessário
+        $row['foto'] = "http://localhost/catalogPro/server/img/img" . $row['foto_produto']; // Ajuste o caminho se necessário
         $produtos[] = $row;
     }
 }

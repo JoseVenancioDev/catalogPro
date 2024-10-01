@@ -19,15 +19,18 @@ export const FormProduto = ({ adicionarProduto }) => {
         formData.append('distribuidora', distribuidora);
         formData.append('validade', validade);
         formData.append('descricao', descricao);
-        formData.append('foto', foto);
+        formData.append('foto_produto', foto);
 
         try {
             const response = await fetch('http://localhost/catalogPro/server/create.php', {
                 method: 'POST',
                 body: formData,
             });
-
+        
             const text = await response.text();
+            console.log(text); // Exibe o que o servidor está retornando
+        
+            // Tente parsear o JSON
             if (response.ok) {
                 const data = JSON.parse(text);
                 alert(data.mensagem || 'Produto cadastrado com sucesso!');
@@ -49,7 +52,8 @@ export const FormProduto = ({ adicionarProduto }) => {
         } catch (error) {
             console.error('Erro ao enviar o formulário:', error);
             alert('Erro ao enviar o formulário, tente novamente.');
-        } finally {
+        }
+         finally {
             setLoading(false); // Reset loading state
         }
     };
