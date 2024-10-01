@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se uma foto foi enviada
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $foto = $_FILES['foto']['name'];
-        $target = './img/img' . basename($foto);
+        $target = './img/' . basename($foto);
         
         // Move o arquivo de upload
         if (!move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {

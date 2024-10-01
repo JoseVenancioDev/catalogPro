@@ -214,7 +214,7 @@ export const Relatorio = () => {
                                             <td>{produto.data_validade}</td>
                                             <td>{produto.descricao_produto}</td>
                                             <td>
-                                                {produto.foto_produto && <img src={`${produto.foto_produto}`} alt="Produto" width="500" />}
+                                                {produto.foto_produto && <img src={produto.foto_produto} alt="Produto" width="500" />}
                                             </td>
                                             <td>
                                                 <button onClick={() => iniciarEdicao(index)}>Editar</button>

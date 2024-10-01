@@ -19,7 +19,7 @@ $produtosBanco = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Envia a resposta JSON com o URL da imagem
 echo json_encode(array_map(function($produto) {
-    $produto['foto_produto'] = 'http://localhost/catalogPro/server/img/' . $produto['foto_produto'];
+    $produto['foto_produto'] = 'http://localhost/catalogPro/server/' . $produto['foto_produto'];
     return $produto;
 }, $produtosBanco));
 ?>

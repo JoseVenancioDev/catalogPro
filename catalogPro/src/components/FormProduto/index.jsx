@@ -19,7 +19,7 @@ export const FormProduto = ({ adicionarProduto }) => {
         formData.append('distribuidora', distribuidora);
         formData.append('validade', validade);
         formData.append('descricao', descricao);
-        formData.append('foto_produto', foto);
+        formData.append('foto', foto);
 
         try {
             const response = await fetch('http://localhost/catalogPro/server/create.php', {

@@ -9,7 +9,7 @@ const CardProduto = ({ produto }) => {
             <p>Distribuidora: {produto.distribuidora}</p>
             <p>Validade: {produto.validade}</p>
             <p>Descrição: {produto.descricao}</p>
-            {produto.foto && <img src={`http://localhost/catalogPro/server/img/img/${produto.foto}`} alt={produto.nome} />}
+            {produto.foto && <img src={`http://localhost/catalogPro/server/img/${produto.foto}`} alt={produto.nome} />}
         </div>
     );
 };
