@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Inclua o arquivo de conexão ao banco de dados
-include './dbcon.php'; // Certifique-se de que o caminho está correto
+include './dbcon.php';
 
 // Verifica se o método é POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -28,39 +28,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $validade = $_POST['validade'] ?? null;
     $descricao = $_POST['descricao'] ?? null;
 
-    // Inicializa a consulta
-    $query = "INSERT INTO tb_produto (nome_produto, preco_produto, distribuidora, data_validade, descricao_produto";
+    // Variável para o nome da foto (pode ser null se não enviada)
+    $foto = null;
 
-    // Adiciona a coluna da foto se ela foi enviada
+    // Verifica se uma foto foi enviada
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $foto = $_FILES['foto']['name'];
-        $target = './img/' . basename($foto);
-        move_uploaded_file($_FILES['foto']['tmp_name'], $target);
-        $query .= ", foto_produto) VALUES (:nome, :preco, :distribuidora, :validade, :descricao, :foto)";
-        $params = [
-            ':foto' => $foto,
-            ':nome' => $nome,
-            ':preco' => $preco,
-            ':distribuidora' => $distribuidora,
-            ':validade' => $validade,
-            ':descricao' => $descricao
-        ];
-    } else {
-        $query .= ") VALUES (:nome, :preco, :distribuidora, :validade, :descricao)";
-        $params = [
-            ':nome' => $nome,
-            ':preco' => $preco,
-            ':distribuidora' => $distribuidora,
-            ':validade' => $validade,
-            ':descricao' => $descricao
-        ];
+        $target = './img/img' . basename($foto);
+        
+        // Move o arquivo de upload
+        if (!move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {
+            echo json_encode(["error" => "Falha ao mover o arquivo da foto."]);
+            exit;
+        }
     }
 
-    // Preparar e executar a query
-    $stmt = $pdo->prepare($query);
-    $stmt->execute($params);
+    try {
+        // Inicializa a query de inserção
+        $query = "INSERT INTO tb_produto (nome_produto, preco_produto, distribuidora, data_validade, descricao_produto, foto_produto)
+                  VALUES (:nome, :preco, :distribuidora, :validade, :descricao, :foto)";
+        
+        // Prepara e executa a query
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            ':nome' => $nome,
+            ':preco' => $preco,
+            ':distribuidora' => $distribuidora,
+            ':validade' => $validade,
+            ':descricao' => $descricao,
+            ':foto' => $foto // Pode ser null se não enviada
+        ]);
 
-    echo json_encode(["message" => "Produto criado com sucesso!"]);
+        echo json_encode(["message" => "Produto criado com sucesso!"]);
+    } catch (PDOException $e) {
+        echo json_encode(["error" => "Erro ao cadastrar o produto: " . $e->getMessage()]);
+    }
 } else {
     echo json_encode(["error" => "Método não permitido."]);
 }
