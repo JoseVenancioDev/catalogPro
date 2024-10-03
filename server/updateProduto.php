@@ -30,7 +30,7 @@ $foto = null;
 
 // Verifica se a foto foi enviada
 if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] === UPLOAD_ERR_OK) {
-    $foto = 'img/' . basename($_FILES['foto_produto']['name']);
+    $foto = basename($_FILES['foto_produto']['name']);
     $target_dir = 'img/';
     
     // Mover o arquivo para o diretório "img/"
