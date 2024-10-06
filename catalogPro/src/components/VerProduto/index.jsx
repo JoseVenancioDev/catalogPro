@@ -8,8 +8,8 @@ export const VerProduto = ({ produtos }) => {
             <h3>Produtos Recentes</h3>
             <div className="lista-recentes">
                 {produtos.length > 0 ? (
-                    produtos.map((produto, index) => (
-                        <CardProduto key={index} produto={produto} />
+                    produtos.map((produto) => (
+                        <CardProduto key={produto.id_produto} produto={produto} />
                     ))
                 ) : (
                     <p>Nenhum produto encontrado.</p>
