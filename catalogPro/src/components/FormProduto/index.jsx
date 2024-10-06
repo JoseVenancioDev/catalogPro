@@ -9,10 +9,12 @@ export const FormProduto = ({ adicionarProduto }) => {
     const [descricao, setDescricao] = useState('');
     const [foto, setFoto] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [contagemSelecoes, setContagemSelecoes] = useState(0); // Contagem de seleções de foto
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
         const formData = new FormData();
         formData.append('nome', nome);
         formData.append('preco', preco);
@@ -26,19 +28,17 @@ export const FormProduto = ({ adicionarProduto }) => {
                 method: 'POST',
                 body: formData,
             });
-        
+
             const text = await response.text();
-            console.log(text); // Exibe o que o servidor está retornando
-        
-            // Tente parsear o JSON
+            console.log(text);
+
             if (response.ok) {
                 const data = JSON.parse(text);
                 alert(data.mensagem || 'Produto cadastrado com sucesso!');
-                
-                // Call the adicionarProduto function
+
                 adicionarProduto({ nome, preco, distribuidora, validade, descricao, foto });
-                
-                // Clear form fields
+
+                // Limpa os campos do formulário
                 setNome('');
                 setPreco('');
                 setDistribuidora('');
@@ -52,9 +52,23 @@ export const FormProduto = ({ adicionarProduto }) => {
         } catch (error) {
             console.error('Erro ao enviar o formulário:', error);
             alert('Erro ao enviar o formulário, tente novamente.');
+        } finally {
+            setLoading(false);
         }
-         finally {
-            setLoading(false); // Reset loading state
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFoto(file); // Define a foto selecionada
+            setContagemSelecoes(prevCount => {
+                const newCount = prevCount + 1;
+                // Atualiza a página se a contagem for par
+                if (newCount % 2 === 0) {
+                    window.location.reload();
+                }
+                return newCount;
+            });
         }
     };
 
@@ -66,7 +80,7 @@ export const FormProduto = ({ adicionarProduto }) => {
                     type="file" 
                     name="foto"
                     required 
-                    onChange={(e) => setFoto(e.target.files[0])}
+                    onChange={handleFileChange}
                 /><br />
                 <input 
                     type="text" 
