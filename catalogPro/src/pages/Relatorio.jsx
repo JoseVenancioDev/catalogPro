@@ -134,6 +134,11 @@ export const Relatorio = () => {
 
     const excluirProduto = async (index) => {
         const produtoId = produtos[index].id_produto;
+
+        // Mensagem de confirmação
+        const confirmed = window.confirm("Você tem certeza que deseja excluir este produto?");
+        if (!confirmed) return; // Se não confirmar, retorna e não executa a exclusão
+
         try {
             const response = await fetch('http://localhost/catalogPro/server/deleteProduto.php', {
                 method: 'POST',
