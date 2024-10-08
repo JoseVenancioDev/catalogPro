@@ -4,9 +4,10 @@
     gap: 20px; /* Espaço entre as boxes */
     margin-top: 20px;
     padding: 10px;
+  
 }
 
-.lista-recentes .produto-box {
+.lista-recentes .card-produto {
     background-color: #ffffff; /* Fundo branco */
     padding: 15px;
     border-radius: 10px;
@@ -30,7 +31,7 @@
 
 .lista-recentes h4 {
     margin: 10px 0;
-    font-size: 1.2rem;
+    font-size: 2.2rem;
     color: #00bfa5; /* Cor vibrante para o título */
 }
 
@@ -42,6 +43,8 @@
     color: #ffffff;
     background-color: #00bfa5; /* Cor vibrante */
     text-align: center; /* Centraliza o texto */
+      max-height: 900px; /* Defina a altura máxima desejada */
+    overflow-y: auto; /* Habilita a rolagem vertical */
 }
 
 /* Responsividade */
